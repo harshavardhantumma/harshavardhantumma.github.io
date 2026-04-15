@@ -96,14 +96,18 @@
     @media (max-width: 700px) {
 
       /* ── NAV ──────────────────────────────── */
-      nav { padding: 0 1.25rem; }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1.25rem;
+      }
       .nav-logo { font-size: 0.82rem; }
       /* Hide email + LinkedIn icons on mobile — hamburger only */
       #nav-email-btn, #nav-linkedin-btn { display: none; }
       .nav-actions {
         position: static; transform: none;
         display: flex; align-items: center;
-        margin-left: auto;
       }
       .hamburger { display: flex; }
       .nav-links {
@@ -1893,8 +1897,9 @@
       var bar = document.getElementById('scroll-progress');
       var btn = document.getElementById('back-to-top');
       window.addEventListener('scroll', function() {
-        var scrolled = window.scrollY;
-        var total = document.body.scrollHeight - window.innerHeight;
+        var scrolled = window.scrollY || document.documentElement.scrollTop;
+        // Use documentElement values — stable even when mobile browser chrome hides/shows
+        var total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         var pct = total > 0 ? (scrolled / total) * 100 : 0;
         if (bar) bar.style.width = pct + '%';
         if (btn) {
