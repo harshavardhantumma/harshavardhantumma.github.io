@@ -37,9 +37,9 @@
       top: 0; left: 0; right: 0;
       z-index: 999;
       height: 52px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 0 2.5rem;
       background: rgba(255,255,255,0.88);
       backdrop-filter: blur(20px);
@@ -54,13 +54,16 @@
       color: #1d1d1f;
       text-decoration: none;
       letter-spacing: -0.01em;
-      justify-self: start;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
-      justify-self: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
     .nav-links a {
       font-size: 0.82rem;
@@ -101,7 +104,7 @@
       left: 0; right: 0;
     }
 
-    .nav-actions { position: absolute; right: 2.5rem; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 1.1rem; }
+    .nav-actions { display: flex; align-items: center; gap: 1.1rem; margin-left: auto; }
     .nav-action-btn {
       display: flex; align-items: center; justify-content: center;
       text-decoration: none;
@@ -206,7 +209,7 @@
     }
     .hero-name {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-      font-size: clamp(3.5rem, 11vw, 9rem);
+      font-size: clamp(2.8rem, 9vw, 9rem);
       font-weight: 700;
       line-height: 1.02;
       letter-spacing: -0.04em;
@@ -972,49 +975,44 @@
     @media (max-width: 700px) {
 
       /* ── NAV ──────────────────────────────── */
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 1.25rem;
-      }
-      .nav-logo { font-size: 0.82rem; }
-      /* Hide email + LinkedIn icons on mobile — hamburger only */
+      nav { padding: 0 1rem; }
+      .nav-logo { font-size: 0.8rem; white-space: nowrap; }
       #nav-email-btn, #nav-linkedin-btn { display: none; }
-      .nav-actions {
-        position: static; transform: none;
-        display: flex; align-items: center;
-      }
+      .nav-actions { margin-left: 0; }
       .hamburger { display: flex; }
+      /* Desktop centered nav links — hidden on mobile, replaced by dropdown */
       .nav-links {
+        position: fixed !important;
+        left: 0 !important; right: 0 !important; top: 52px;
+        transform: translateY(-110%) !important;
         display: flex !important; flex-direction: column;
-        position: fixed; top: 52px; left: 0; right: 0;
         background: rgba(255,255,255,0.97);
         backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(0,0,0,0.08);
-        padding: 1.2rem 1.5rem 1.5rem; gap: 0;
-        transform: translateY(-110%);
-        transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+        padding: 0.5rem 0 1rem; gap: 0;
+        transition: transform 0.35s cubic-bezier(0.4,0,0.2,1) !important;
         z-index: 998;
       }
-      .nav-links.mobile-open { transform: translateY(0); }
+      .nav-links.mobile-open { transform: translateY(0) !important; }
       .nav-links li { border-bottom: 1px solid #f0f0f5; }
       .nav-links li:last-child { border-bottom: none; }
-      .nav-links a { display: block; padding: 0.85rem 0; font-size: 0.95rem; color: #1d1d1f; }
+      .nav-links a { display: block; padding: 0.9rem 1.5rem; font-size: 0.95rem; color: #1d1d1f; }
       .nav-links a::after { display: none; }
+      .nav-links a.active::before { display: none; }
 
       /* ── HERO ─────────────────────────────── */
-      #hero { padding: 6rem 1.5rem 3.5rem; }
+      #hero { padding: 5.5rem 1.25rem 3rem; }
+      .hero-bg { display: none; }
       .hero-badge {
-        font-size: 0.6rem; letter-spacing: 0.08em;
-        padding: 0.3rem 0.75rem; margin-bottom: 1.5rem;
-        /* wrap gracefully on very small screens */
-        white-space: normal; text-align: center; line-height: 1.6;
+        font-size: 0.58rem; letter-spacing: 0.06em;
+        padding: 0.28rem 0.7rem; margin-bottom: 1.25rem;
+        white-space: normal; text-align: center; line-height: 1.7;
+        max-width: 85vw;
       }
-      .hero-tagline { font-size: 1rem; margin-top: 1.2rem; }
-      .hero-buttons { margin-top: 2rem; gap: 0.75rem; }
+      .hero-tagline { font-size: 0.95rem; margin-top: 1rem; }
+      .hero-buttons { margin-top: 1.75rem; gap: 0.6rem; }
       .btn { padding: 0.65rem 1.4rem; font-size: 0.84rem; }
-      .scroll-hint { margin-top: 2.5rem; }
+      .scroll-hint { margin-top: 2rem; }
 
       /* ── SECTIONS ─────────────────────────── */
       section { padding: 4.5rem 1.25rem; }
@@ -1065,145 +1063,130 @@
     /* ── MOBILE COMPACT LIST — Articles & Projects ── */
     @media (max-width: 700px) {
 
-      /* NAV DROPDOWN — polished list */
-      .nav-links {
-        padding: 0.5rem 0 1rem;
-      }
+      /* ── NAV DOT — hide on mobile (no room) ── */
+      .nav-links a.active::before { display: none; }
+
+      /* NAV DROPDOWN */
+      .nav-links { padding: 0.5rem 0 1rem; }
       .nav-links li { border-bottom: 1px solid #f0f0f5; }
       .nav-links li:last-child { border-bottom: none; }
       .nav-links a {
-        padding: 0.9rem 1.5rem;
-        font-size: 0.95rem;
-        font-weight: 500;
-        color: #1d1d1f;
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
+        padding: 0.9rem 1.5rem; font-size: 0.95rem;
+        font-weight: 500; color: #1d1d1f;
+        display: flex; align-items: center; gap: 0.6rem;
       }
       .nav-links a.active { color: #0071e3; font-weight: 700; }
 
+      /* ── ABOUT TABS — horizontal scroll so all 4 fit ── */
+      .about-tabs {
+        overflow-x: auto; flex-wrap: nowrap;
+        scrollbar-width: none; -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.25rem; gap: 0.4rem;
+      }
+      .about-tabs::-webkit-scrollbar { display: none; }
+      .about-tab { white-space: nowrap; flex-shrink: 0; font-size: 0.74rem; padding: 0.3rem 0.85rem; }
+
+      /* ── EXP CARDS — tighter on mobile ── */
+      .exp-card { padding: 0.9rem 1rem; }
+      .exp-card-role { font-size: 0.82rem; }
+      .exp-card-org  { font-size: 0.72rem; }
+      .exp-card-date { font-size: 0.68rem; }
+
+      /* ── RESUME PANEL — hide iframe, show buttons only ── */
+      .resume-panel-wrap iframe { display: none; }
+      .resume-panel-wrap > div[style*="border-radius:14px"] { display: none; }
+
       /* ── ARTICLES compact list ── */
       .articles-scroll-wrap {
-        overflow-x: hidden;
-        -webkit-mask-image: none;
-        mask-image: none;
-        padding: 0;
+        overflow-x: hidden; -webkit-mask-image: none; mask-image: none; padding: 0;
       }
       .articles-grid {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        overflow: visible;
-        scroll-snap-type: none;
-        gap: 0;
-        padding: 0;
-        background: #ffffff;
-        border: 1px solid #e8e8ed;
-        border-radius: 16px;
-        overflow: hidden;
+        display: flex; flex-direction: column; width: 100%;
+        overflow: hidden; scroll-snap-type: none;
+        gap: 0; padding: 0;
+        background: #ffffff; border: 1px solid #e8e8ed; border-radius: 16px;
       }
       .carousel-nav { display: none; }
       .article-card-wrap {
-        flex: none;
-        min-width: unset;
-        scroll-snap-align: none;
-        border-radius: 0;
-        transform: none !important;
-        box-shadow: none !important;
+        flex: none; min-width: unset; scroll-snap-align: none;
+        border-radius: 0; transform: none !important; box-shadow: none !important;
       }
-      .article-card-wrap.open-wrap {
-        flex: none;
-        min-width: unset;
-      }
-      /* Each collapsed card = a simple row */
+      .article-card-wrap.open-wrap { flex: none; min-width: unset; }
       .article-card {
-        border-radius: 0;
-        background: #ffffff;
-        border: none;
-        border-bottom: 1px solid #e8e8ed;
-        flex: none;
+        border-radius: 0; background: #ffffff;
+        border: none; border-bottom: 1px solid #e8e8ed; flex: none;
       }
       .article-card-wrap:last-child .article-card { border-bottom: none; }
       .article-icon { display: none; }
       .article-card-body { padding: 0.85rem 1rem; }
       .article-card h3 { font-size: 0.88rem; margin-bottom: 0; line-height: 1.3; }
-      /* Hide preview text in collapsed state — saves huge scroll space */
       .article-card:not(.open) .preview { display: none; }
       .week-pill { font-size: 0.62rem; margin-bottom: 0.25rem; }
-
-      /* Opened article on mobile — stays in column, no full-width */
       .article-card.open {
-        background: #f5f8ff;
-        border-bottom: 2px solid #0071e3;
-        box-shadow: none;
+        background: #f5f8ff; border-bottom: 2px solid #0071e3; box-shadow: none;
       }
       .article-card.open .article-card-body { padding: 1rem; }
       .article-card.open .article-chevron { position: static; margin-top: 3px; }
       .article-card.open .article-header { justify-content: space-between; text-align: left; }
       .article-card.open h3 { text-align: left; font-size: 0.92rem; }
-      .article-card.open .article-expanded {
-        display: block;
-        margin-top: 0.75rem;
-        padding-top: 0.75rem;
-      }
+      .article-card.open .article-expanded { display: block; margin-top: 0.75rem; padding-top: 0.75rem; }
       .article-card.open .exp-section {
-        background: #ffffff;
-        border-radius: 10px;
-        padding: 0.85rem;
-        margin-bottom: 0.75rem;
-        height: auto;
+        background: #ffffff; border-radius: 10px;
+        padding: 0.85rem; margin-bottom: 0.75rem; height: auto;
       }
+      /* Action buttons stack on mobile */
+      .article-action-row { flex-direction: column; gap: 0.5rem; }
+      .article-btn { width: 100%; justify-content: center; }
 
       /* ── PROJECTS compact list ── */
       .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-        border: 1px solid #2c2c2e;
-        border-radius: 16px;
-        overflow: hidden;
-        align-items: unset;
+        grid-template-columns: 1fr; gap: 0;
+        border: 1px solid #2c2c2e; border-radius: 16px;
+        overflow: hidden; align-items: unset;
       }
-      .project-card-wrap {
-        border-radius: 0;
-        transform: none !important;
-        box-shadow: none !important;
-      }
-      .project-card-wrap:hover {
-        transform: none !important;
-        box-shadow: none !important;
-      }
+      /* Featured card — no special width on mobile */
+      .project-card-wrap.featured { grid-column: auto; }
+      .project-card-wrap { border-radius: 0; transform: none !important; box-shadow: none !important; }
+      .project-card-wrap:hover { transform: none !important; box-shadow: none !important; }
       .project-card-wrap.open-proj { grid-column: auto; }
       .project-card {
-        border-radius: 0;
-        padding: 0.9rem 1.1rem;
-        border: none;
-        border-bottom: 1px solid #2c2c2e;
-        flex: none;
+        border-radius: 0; padding: 0.9rem 1.1rem;
+        border: none; border-bottom: 1px solid #2c2c2e; flex: none;
       }
       .project-card-wrap:last-child .project-card { border-bottom: none; }
-      /* Number becomes a small inline label */
-      .project-number {
-        font-size: 0.6rem;
-        color: #0071e3;
-        margin-bottom: 0.2rem;
-        letter-spacing: 0.1em;
-        line-height: 1;
-      }
+      .project-number { font-size: 0.6rem; color: #0071e3; margin-bottom: 0.2rem; letter-spacing: 0.1em; line-height: 1; }
       .project-card h3 { font-size: 0.9rem; margin-bottom: 0; }
-      /* Hide preview + tags in collapsed state */
       .project-card:not(.open) .project-preview { display: none; }
       .project-card:not(.open) .project-tags { display: none; }
-
-      /* Opened project on mobile */
-      .project-card.open {
-        border-bottom: 2px solid #0071e3;
-        box-shadow: none;
-      }
+      .project-card.open { border-bottom: 2px solid #0071e3; box-shadow: none; }
       .project-card.open .project-preview { display: block; margin-top: 0.5rem; }
       .project-card.open .project-tags { display: flex; margin-top: 0.75rem; }
       .project-body-grid { grid-template-columns: 1fr; }
+      /* Featured card overrides on mobile */
+      .project-card-wrap.featured .project-card { background: #1c1c1e; }
+      .project-card-wrap.featured .project-number { font-size: 0.6rem; color: #0071e3; }
+      .project-card-wrap.featured h3 { font-size: 0.9rem; }
+
+      /* ── BOOKS ── */
+      .book-title { font-size: 1.15rem; }
+      .book-cover { width: 80px; }
+      .book-cover-wrap { padding: 1rem; gap: 0.85rem; min-height: auto; }
+
+      /* ── REFLECTION ── */
+      .quote-mark { font-size: 3.5rem; }
+      .reflection-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+
+      /* ── CONTACT ── */
+      .contact-chips { flex-direction: column; align-items: stretch; }
+      .chip { justify-content: center; }
+
+      /* ── STAT CARDS ── */
+      .stat-card { min-height: 65px; padding: 0.7rem 1rem; }
+      .stat-number { font-size: 1.15rem; }
+      .stat-label { font-size: 0.68rem; }
 
     }
+
   </style>
 </head>
 <body>
@@ -1307,6 +1290,7 @@
             <button class="about-tab active" onclick="switchTab(event,'exp')">Experience</button>
             <button class="about-tab" onclick="switchTab(event,'edu')">Education</button>
             <button class="about-tab" onclick="switchTab(event,'skills')">Skills</button>
+            <button class="about-tab" onclick="switchTab(event,'resume')">Resume</button>
           </div>
 
           <!-- Experience Panel -->
@@ -1319,7 +1303,7 @@
                     <div class="exp-card-icon" style="background:#e8f5e9;">&#127979;</div>
                     <div>
                       <div class="exp-card-role">Teaching Assistant</div>
-                      <div class="exp-card-org">University of North Carolina at Charlotte</div>
+                      <div class="exp-card-org">University of North Carolina at Charlotte (UNCC)</div>
                       <div class="exp-card-date">Jan 2026 &mdash; Present &nbsp;&middot;&nbsp; Charlotte, NC</div>
                     </div>
                   </div>
@@ -1473,6 +1457,23 @@
               </div>
             </div>
           </div>
+
+          <!-- Resume Panel -->
+          <div class="about-panel" id="panel-resume">
+            <div class="resume-panel-wrap">
+              <p style="font-size:0.9rem;color:#6e6e73;line-height:1.7;margin-bottom:1.25rem;">
+                M.S. in Construction &amp; Facilities Engineering · Former Planning Engineer · Available for internships in <strong style="color:#1d1d1f;">Construction Management</strong>, <strong style="color:#1d1d1f;">Project Engineering</strong>, and <strong style="color:#1d1d1f;">Project Controls</strong>.
+              </p>
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                <a href="https://harshavardhantumma.github.io/resume.pdf" target="_blank" class="btn btn-blue" style="font-size:0.84rem;padding:0.6rem 1.4rem;">&#128196; View Resume &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/resume.pdf" download class="btn btn-ghost" style="font-size:0.84rem;padding:0.6rem 1.4rem;">&#11123; Download</a>
+              </div>
+              <div style="margin-top:1.5rem;border-radius:14px;overflow:hidden;border:1px solid #e8e8ed;background:#f5f5f7;">
+                <iframe src="https://harshavardhantumma.github.io/resume.pdf" width="100%" height="520px" style="display:block;border:none;"></iframe>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="stat-grid">
           <div class="stat-card reveal delay-1">
@@ -2286,16 +2287,6 @@
             <circle cx="4" cy="4" r="2"/>
           </svg>
           LinkedIn
-        </a>
-        <a href="https://harshavardhantumma.github.io/resume.pdf" target="_blank" class="chip chip-resume">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14,2 14,8 20,8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10,9 9,9 8,9"/>
-          </svg>
-          View Resume
         </a>
         <span class="chip chip-location">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
