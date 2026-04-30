@@ -484,22 +484,25 @@
       width: max-content;
     }
     .article-card-wrap {
-      flex: 0 0 275px;
+      flex: 0 0 310px;
       min-width: 0;
       scroll-snap-align: start;
-      border-radius: 18px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 22px;
+      transition: transform 0.25s ease;
       display: flex; flex-direction: column;
     }
     .article-card-wrap:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      transform: translateY(-4px);
+    }
+    .article-card-wrap:hover .article-card {
+      background: #ebebed;
     }
     .article-card {
-      background: #f5f5f7; border-radius: 18px;
-      border: 1px solid transparent; cursor: pointer; overflow: hidden;
-      transition: background 0.2s, border-color 0.2s;
+      background: #f5f5f7; border-radius: 22px;
+      border: 1.5px solid transparent; cursor: pointer; overflow: hidden;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
       flex: 1; display: flex; flex-direction: column;
+      position: relative; min-height: 340px;
     }
     .article-card:hover {
       background: #ffffff;
@@ -512,26 +515,15 @@
     }
     /* Expanded carousel card */
     .article-card-wrap.open-wrap {
-      flex: 0 0 min(860px, 90vw);
+      flex: 0 0 310px;
       min-width: 0;
     }
     .article-card.open:hover { transform: none; }
     /* Center the header + pill when card is open */
-    .article-card.open .article-card-body {
-      padding: 1.8rem 2rem;
-    }
-    .article-card.open .article-icon {
-      height: 90px; font-size: 2.4rem;
-    }
-    .article-card.open .week-pill {
-      display: block; text-align: center; margin-bottom: 0.4rem;
-    }
-    .article-card.open .article-header {
-      justify-content: center; text-align: center; margin-bottom: 0;
-    }
-    .article-card.open h3 {
-      font-size: 1.2rem; font-weight: 700; text-align: center;
-    }
+    .article-card.open .article-card-body { padding: 1.4rem 1.4rem 0.75rem; }
+    .article-card.open .week-pill { text-align: left; }
+    .article-card.open h3 { text-align: left; }
+    .article-card.open .article-icon { height: 140px; font-size: 4.5rem; order: 2; }
     .article-source {
       display: none; font-size: 0.8rem; color: #6e6e73;
       text-align: center; margin-top: 0.35rem;
@@ -539,9 +531,7 @@
     }
     .article-card.open .article-source { display: block; }
     .article-card.open .article-header { flex-wrap: wrap; }
-    .article-card.open .article-chevron {
-      position: absolute; top: 1.8rem; right: 2rem; margin-top: 0;
-    }
+    .article-card.open     .article-chevron { display: none; }
     .article-card.open .article-card-body { position: relative; }
     /* Make all 3 columns equal height with content starting at same line */
     .article-card.open .article-expanded {
@@ -554,8 +544,8 @@
       background: #f5f5f7; border-radius: 12px; padding: 1.25rem;
       height: 100%;
     }
-    .article-icon { height: 78px; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
-    .article-card-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .article-icon { height: 140px; display: flex; align-items: flex-end; justify-content: flex-start; font-size: 4.5rem; flex-shrink: 0; padding: 0 1.4rem 1rem; order: 2; line-height: 1; }
+    .article-card-body { padding: 1.4rem 1.4rem 0.75rem; flex: 1; display: flex; flex-direction: column; order: 1; }
     .article-card .preview { font-size: 0.86rem; color: #6e6e73; line-height: 1.72; flex: 1; }
     .article-card.open .article-expanded { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
     .close-wrap { grid-column: 1 / -1; padding-top: 0.5rem; border-top: 1px solid #e8e8ed; }
@@ -568,8 +558,8 @@
     .article-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
     .article-card h3 {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-      font-size: 0.98rem; font-weight: 600; color: #1d1d1f;
-      line-height: 1.35; margin-bottom: 0.6rem;
+      font-size: 1.25rem; font-weight: 700; color: #1d1d1f;
+      line-height: 1.25; margin-bottom: 0.6rem; letter-spacing: -0.03em;
     }
     .article-card .preview { font-size: 0.86rem; color: #6e6e73; line-height: 1.72; }
     .article-card.open .preview { display: none; }
@@ -626,8 +616,8 @@
     }
     .article-card h3 {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-      font-size: 0.98rem; font-weight: 600; color: #1d1d1f;
-      line-height: 1.35; margin-bottom: 0.6rem;
+      font-size: 1.25rem; font-weight: 700; color: #1d1d1f;
+      line-height: 1.25; margin-bottom: 0.6rem; letter-spacing: -0.03em;
     }
     .article-card p { font-size: 0.86rem; color: #6e6e73; line-height: 1.72; }
     .article-card .preview { flex: 1; }
@@ -897,6 +887,10 @@
       pointer-events: none; overflow: hidden; z-index: 0;
     }
     .hero-bg svg { width: 100%; height: 100%; }
+
+    /* Logo display */
+    .logo-short { display: none; }
+    .logo-full { display: inline; }
 
     /* Cursor dot — desktop only */
     #cursor-dot {
@@ -1243,16 +1237,20 @@
 
   <!-- NAVIGATION -->
   <nav id="navbar">
-    <a class="nav-logo" href="#hero">Harshavardhan Tumma</a>
+    <a class="nav-logo" href="#hero"><span class="logo-full">Harshavardhan Tumma</span><span class="logo-short">HT</span></a>
     <ul class="nav-links" id="nav-links-list">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#articles">Articles</a></li>
       <li><a href="#book">Book</a></li>
+      <li><a href="#undergrad-projects">B.Tech</a></li>
       <li><a href="#reflection">Reflection</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
+      <button class="nav-action-btn" onclick="openSearch()" title="Search" aria-label="Search" style="background:none;border:none;cursor:pointer;padding:0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
       <a id="nav-email-btn" class="nav-action-btn" href="#" title="Email" onclick="return false;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -1271,6 +1269,31 @@
       </button>
     </div>
   </nav>
+
+  <!-- SEARCH MODAL -->
+  <div id="search-modal-overlay" onclick="closeSearch(event)">
+    <div id="search-modal">
+      <div id="search-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="search-q" type="text" placeholder="Search sections, projects, articles&#8230;" oninput="runSearch()" autocomplete="off" />
+        <button id="search-close-btn" onclick="closeSearch(null)" aria-label="Close">&#10005;</button>
+      </div>
+      <div id="search-results"></div>
+      <div id="search-empty">No results found.</div>
+    </div>
+  </div>
+
+  <!-- ARTICLE MODAL -->
+  <div id="article-modal-overlay" onclick="closeArticleModal(event)">
+    <div id="article-modal">
+      <button id="article-modal-close" onclick="closeArticleModal(null)" aria-label="Close">&#10005;</button>
+      <div id="article-modal-week"></div>
+      <div id="article-modal-title"></div>
+      <div id="article-modal-source"></div>
+      <div id="article-modal-body"></div>
+      <div id="article-modal-actions"></div>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
@@ -1649,7 +1672,7 @@
                 </div>
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.25rem;">
-                <a href="https://harshavardhantumma.github.io/Final_Project_-_Literature_Review.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128196; Literature Review &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/Final_Project_-_Literature_Review.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128196; Literature Review &#8599;</a>
               </div>
               <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
@@ -1723,8 +1746,8 @@
                 </div>
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.25rem;">
-                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-idea.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Project Idea Presentation &#8599;</a>
-                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-preliminary.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Preliminary Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-idea.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Project Idea Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-preliminary.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Preliminary Presentation &#8599;</a>
               </div>
               <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
@@ -1734,6 +1757,100 @@
       </div>
     </div>
   </section>
+
+  <!-- UNDERGRADUATE PROJECTS -->
+  <section id="undergrad-projects" style="background:#f5f5f7;">
+    <div class="inner">
+      <div class="reveal">
+        <p class="section-tag">B.Tech Projects</p>
+        <h2 class="section-title">Undergraduate Research</h2>
+        <p class="section-sub">Major and minor research projects completed at Malla Reddy Institute of Technology, Secunderabad, India (2019&ndash;2022) &mdash; Bachelor of Technology in Civil Engineering, affiliated to JNTUH.</p>
+      </div>
+      <div class="projects-grid reveal" style="margin-top:2rem;">
+
+        <!-- Major Project -->
+        <div class="project-card-wrap featured reveal">
+          <div class="project-card" onclick="toggleProject(this)">
+            <div class="project-card-top">
+              <div class="project-number" style="color:#0071e3;">Major</div>
+              <div class="project-chevron"></div>
+            </div>
+            <h3>6-Lane Flexible Pavement Design &mdash; IIT PAVE Software</h3>
+            <p class="project-preview">Designed and analyzed a 6-lane flexible pavement for National Highway NH365BB (Suryapet&ndash;Khammam, Telangana) using IIT PAVE software and IRC:37-2018 guidelines. Conducted field CBR tests, traffic volume surveys, and iterated through three design trials to arrive at a safe, economical pavement composition.</p>
+            <div class="project-tags">
+              <span class="tag">IIT PAVE</span>
+              <span class="tag">IRC:37-2018</span>
+              <span class="tag">Pavement Design</span>
+              <span class="tag">Highway Engineering</span>
+              <span class="tag">CBR Analysis</span>
+            </div>
+            <div class="project-body">
+              <div class="project-body-grid">
+                <div class="project-body-section">
+                  <div class="proj-label">Study Area</div>
+                  <p>NH365BB, Mothey (Suryapet) to Nayakulagudem (Kothagudem), Telangana &mdash; 10 km chainage. Designed for 47 MSA over a 20-year design period with 2,460 CVPD initial traffic.</p>
+                </div>
+                <div class="project-body-section">
+                  <div class="proj-label">Final Design</div>
+                  <p>Surface: 30mm &bull; DBM Binder: 140mm &bull; WMM Base: 200mm &bull; GSB Sub-base: 200mm &bull; Subgrade: 500mm. Satisfied both fatigue (horizontal tensile strain) and rutting (vertical compressive strain) criteria per IRC:37-2018.</p>
+                </div>
+                <div class="project-body-section">
+                  <div class="proj-label">Tools &amp; Methods</div>
+                  <p>IIT PAVE multilayer elastic analysis, California Bearing Ratio testing (90th percentile: 4.6%), 7-day 24-hour traffic count, IRC SP 19-2001 methodology, VG40 bitumen (E = 3000 MPa).</p>
+                </div>
+              </div>
+              <div class="project-action-row">
+                <a href="https://harshavardhantumma.github.io/undergrad_majorprojectreport.pdf" target="_blank" class="project-btn project-btn-primary">&#128196; Full Report &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/undergrad_majorprojectpresentation.pdf" target="_blank" class="project-btn" style="border:1.5px solid #0071e3;color:#0071e3;background:transparent;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Presentation &#8599;</a>
+              </div>
+              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Minor Project -->
+        <div class="project-card-wrap reveal delay-1">
+          <div class="project-card" onclick="toggleProject(this)">
+            <div class="project-card-top">
+              <div class="project-number" style="color:#0071e3;">Minor</div>
+              <div class="project-chevron"></div>
+            </div>
+            <h3>Recycled Aggregate in Concrete &mdash; Experimental Study</h3>
+            <p class="project-preview">Investigated the compressive strength of M25 concrete using recycled coarse aggregate (RCA) sourced from demolished structures. Tested multiple replacement ratios (25%, 50%, 75%, 100%) at 7, 14, and 21 days against conventional concrete to determine optimal RCA substitution for sustainable construction.</p>
+            <div class="project-tags">
+              <span class="tag">Recycled Aggregate</span>
+              <span class="tag">Concrete Technology</span>
+              <span class="tag">M25 Mix Design</span>
+              <span class="tag">Sustainability</span>
+            </div>
+            <div class="project-body">
+              <div class="project-body-grid">
+                <div class="project-body-section">
+                  <div class="proj-label">Key Finding</div>
+                  <p>Up to 50% replacement of natural coarse aggregate with RCA achieves satisfactory compressive strength (24.06 MPa at 21 days vs 27.9 MPa conventional). Beyond 50%, strength drops significantly. 100% RCA suitable for non-load-bearing partitions only.</p>
+                </div>
+                <div class="project-body-section">
+                  <div class="proj-label">Methodology</div>
+                  <p>IS 10262:2009 mix design with w/c ratio 0.45. Six cubes cast per mix. Demolition waste broken into 20mm aggregate, sieve-analysed, specific gravity determined, and mixed at 0%, 25%, 50%, 75%, 100% RCA ratios. Compression tested at 7, 14, and 21 days.</p>
+                </div>
+                <div class="project-body-section">
+                  <div class="proj-label">Impact</div>
+                  <p>RCA use reduces carbon footprint (0.0024 Mt CO&#8322; per tonne vs 0.0046 Mt for natural aggregate). Lifecycle cost reduced by 34&ndash;41%. Addresses India&rsquo;s 14.5 million tonne annual construction waste problem through circular material use.</p>
+                </div>
+              </div>
+              <div class="project-action-row">
+                <a href="https://harshavardhantumma.github.io/undergrad_minorprojectreport.pdf" target="_blank" class="project-btn project-btn-primary">&#128196; Full Report &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/undergrad_minorprojectpresentation.pdf" target="_blank" class="project-btn" style="border:1.5px solid #0071e3;color:#0071e3;background:transparent;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Presentation &#8599;</a>
+              </div>
+              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 
   <!-- ARTICLES -->
   <section id="articles">
@@ -1755,7 +1872,7 @@
 
         <!-- WEEK 2 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-1" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#fff3e0;">&#127758;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 02</span>
@@ -1779,7 +1896,7 @@
                 <p>Large-scale AI infrastructure investments are directly increasing demand for construction projects &mdash; data centers, power systems, and advanced facilities. AI tools have the potential to transform construction planning, scheduling, cost estimation, and project management, while regulatory uncertainty means firms must carefully balance efficiency gains with workforce training and ethical AI use.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week02.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week02.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/6d5189ad-6aa2-4768-8918-9b3ad7658036" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -1790,7 +1907,7 @@
 
         <!-- WEEK 3 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-2" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-2" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#e8f0fe;">&#129504;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 03</span>
@@ -1814,7 +1931,7 @@
                 <p>AGI could transform construction through fully autonomous decision-making across design, scheduling, cost estimation, and risk management. However, adoption raises serious concerns about workforce displacement, ethical responsibility, and accountability for autonomous decisions in safety-critical construction environments &mdash; making robust governance frameworks essential.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week03.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week03.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/98d094ea-f8ea-4e5f-8a09-2b965d171bea" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -1825,7 +1942,7 @@
 
         <!-- WEEK 5 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-3" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-3" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#f0f4ff;">&#128640;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 05</span>
@@ -1849,7 +1966,7 @@
                 <p>Humanist Superintelligence could transform construction by enhancing planning, design, and operations &mdash; optimizing structural designs, predicting project risks, and enabling real-time building performance simulation. By keeping humans in control, construction professionals could be empowered to make better decisions while integrating cutting-edge AI across large infrastructure and building projects.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week05.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week05.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/nyYRAmaAEfT" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -1860,7 +1977,7 @@
 
         <!-- WEEK 6 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-1" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#e8f5e9;">&#127959;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 06</span>
@@ -1884,7 +2001,7 @@
                 <p>This article is the most directly relevant to my field. AI can reduce rework, improve productivity, enhance safety, and support informed strategic decisions. Early adopters will gain significant competitive advantages. The article also highlights that AI is reshaping workforce skills &mdash; increasing demand for professionals who can interpret data and manage digital systems on construction projects.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week06.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week06.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/f182440a-8316-497a-9fbf-713cdb2e874c" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -1895,7 +2012,7 @@
 
         <!-- WEEK 7 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-2" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-2" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#e3f2fd;">&#128207;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 07</span>
@@ -1919,7 +2036,7 @@
                 <p>AI-powered BIM tools can streamline coordination, automate clash detection, assist with cost forecasting, and improve construction planning. These innovations are directly applicable to my studies in construction management. However, workforce adaptation and trust in AI technologies will be critical challenges as organizations transition toward AI-driven BIM workflows.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week07.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week07.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/FL5SC6mkhUL" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -1930,7 +2047,7 @@
 
         <!-- WEEK 8 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-3" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-3" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#fce4ec;">&#129302;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 08</span>
@@ -1954,7 +2071,7 @@
                 <p>AI agents could transform construction project management by autonomously handling document review, scheduling updates, safety reporting, and procurement workflows &mdash; freeing construction professionals to focus on higher-level decisions. The rapid cost reduction makes these tools increasingly accessible even for smaller construction firms and facilities management teams.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week08.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week08.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/be630edd-9d0d-4732-b94a-07d650e53167" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -1965,7 +2082,7 @@
 
         <!-- WEEK 10 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-1" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#e8f4fd;">&#128187;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 10</span>
@@ -1989,7 +2106,7 @@
                 <p>Construction firms rely on custom software for scheduling, budgeting, and BIM. Vibe coding could allow site managers without coding backgrounds to build internal tools faster &mdash; but with hidden risks if the underlying code is fragile. This is especially critical for digital twin and IoT integrations managing sensors, drones, and real-time data pipelines on smart construction sites.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week10.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week10.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/HvVvh5MZuYt" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2000,7 +2117,7 @@
 
         <!-- WEEK 11 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-2" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-2" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#f3e5f5;">&#9878;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 11</span>
@@ -2024,7 +2141,7 @@
                 <p>The exponential growth of AI infrastructure creates a surge in demand for advanced civil engineering to design structures supporting extreme electrical and cooling loads. Sophisticated facility management will be crucial to sustainably operate these complex buildings. However, smaller construction firms lacking digital tools could be severely outpaced by larger tech-enabled corporations, mirroring the global inequality the UN report warns about.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week11.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week11.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/8204c972-c390-44d9-ad64-d9f0d4d321ef" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2035,7 +2152,7 @@
 
         <!-- WEEK 12 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-3" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-3" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#e8f5e9;">&#127963;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 12</span>
@@ -2059,7 +2176,7 @@
                 <p>National AI policy could directly influence adoption of AI tools in project management, scheduling, design review, and safety monitoring. The article&apos;s connection between AI growth, data center construction, and electricity demand means policy could indirectly create more construction projects in energy infrastructure. Clearer federal rules may also give construction firms more confidence to invest in AI technologies long-term.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week12.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week12.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/250fdd9e-1ab4-458c-a403-bc4f0872f8ee" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2070,7 +2187,7 @@
 
         <!-- WEEK 13 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-1" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#fff8e1;">&#128279;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 13</span>
@@ -2094,7 +2211,7 @@
                 <p>For construction, AI-driven procurement could optimize material sourcing, vendor selection, and supply chain risk management &mdash; critical factors in controlling project costs and timelines. Faster, smarter procurement decisions directly reduce material waste and budget overruns. However, this also requires the construction industry to reskill procurement teams in data literacy, prompt engineering, and AI oversight capabilities.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week13.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week13.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/LG5d0sNYwdY" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2105,7 +2222,7 @@
 
         <!-- WEEK 14 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-2" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-2" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#fce4ec;">&#128241;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 14</span>
@@ -2129,7 +2246,7 @@
                 <p>Construction companies increasingly use digital platforms for marketing, training, recruitment, and public communication. If AI-generated content becomes misleading, it could reduce trust in online project visuals, promotional material, or safety communication. The article&apos;s emphasis on labeling and transparency is directly relevant &mdash; construction will also need clear standards for when AI-generated content is being used to keep stakeholder communication credible and professional.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week14.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week14.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/772a2675-2b64-4cf3-9f3d-be4f3a309506" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2140,7 +2257,7 @@
 
         <!-- WEEK 15 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-3" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-3" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#e8f5e9;">&#127979;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 15</span>
@@ -2164,7 +2281,7 @@
                 <p>Construction is increasingly adopting AI for scheduling, cost estimation, generative design, safety monitoring, and BIM. But effective use demands critical, ethical judgment &mdash; not just technical ability. As the article notes, understanding a technology means knowing both when to use it and when not to &mdash; especially consequential in construction where AI-driven errors can result in safety hazards, budget overruns, or structural failures. This underscores the need for construction programs to build AI literacy alongside technical training.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week15.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week15.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/YDsZn8bXvrO" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2175,7 +2292,7 @@
 
         <!-- WEEK 16 -->
         <div class="article-card-wrap">
-        <div class="article-card reveal delay-1" onclick="toggleArticle(this)">
+        <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
           <div class="article-icon" style="background:#e8f0fe;">&#129504;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 16</span>
@@ -2199,7 +2316,7 @@
                 <p>DeepMind&apos;s research-first philosophy has direct relevance to construction AI adoption. Tools like AlphaFold demonstrate that patient, purpose-driven AI development can yield transformative real-world applications &mdash; a model the construction industry should consider when evaluating AI investments. Rather than chasing the fastest or cheapest AI tools, construction firms that invest in reliable, well-researched AI for structural analysis, project planning, and safety monitoring will build more sustainable competitive advantages.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week16.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week16.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/629691e4-30ff-4014-a35e-5c8728fc5821" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2231,7 +2348,7 @@
               <div class="book-title">Atomic Habits</div>
               <div class="book-author">by James Clear</div>
               <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <p style="font-size:0.84rem;color:#6e6e73;margin-top:0.5rem;line-height:1.6;display:block;">Tiny changes, remarkable results — a practical guide to building good habits and breaking bad ones.</p>
+              <p style="font-size:0.84rem;color:#6e6e73;margin-top:0.5rem;line-height:1.6;display:block;">Tiny changes, remarkable results &mdash; a practical guide to building good habits and breaking bad ones.</p>
             </div>
             <div class="book-chevron"></div>
           </div>
@@ -2239,7 +2356,7 @@
             <div class="book-exp-label">Summary</div>
             <p>Atomic Habits explores how tiny, consistent changes compound into remarkable results over time. James Clear argues that it is not the size of the goal that matters, but the systems and daily habits you build to get there. The book introduces the Four Laws of Behaviour Change as a practical framework for building lasting habits.</p>
             <div class="book-exp-label">Connection to My Field</div>
-            <p>As a construction engineer, this book reinforced the importance of building systematic processes on job sites and in project management. Small improvements in workflow efficiency, safety checks, and team communication — done consistently — lead to major gains over time. The concept of systems over goals directly applies to how construction projects should be managed.</p>
+            <p>As a construction engineer, this book reinforced the importance of building systematic processes on job sites and in project management. Small improvements in workflow efficiency, safety checks, and team communication &mdash; done consistently &mdash; lead to major gains over time. The concept of systems over goals directly applies to how construction projects should be managed.</p>
             <div class="book-exp-label">My Takeaway</div>
             <p>This is one of the most practical books I have read. The idea of making habits 1% better every day is something I now apply to my academic work and personal routines. I would strongly recommend it to any engineering student looking to build a stronger work ethic and sustainable productivity habits.</p>
           </div>
@@ -2253,13 +2370,13 @@
               <div class="book-title">Rich Dad Poor Dad</div>
               <div class="book-author">by Robert T. Kiyosaki</div>
               <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-              <p style="font-size:0.84rem;color:#6e6e73;margin-top:0.5rem;line-height:1.6;display:block;">What the rich teach their kids about money — a challenge to conventional thinking about wealth and financial independence.</p>
+              <p style="font-size:0.84rem;color:#6e6e73;margin-top:0.5rem;line-height:1.6;display:block;">What the rich teach their kids about money &mdash; a challenge to conventional thinking about wealth and financial independence.</p>
             </div>
             <div class="book-chevron"></div>
           </div>
           <div class="book-expanded">
             <div class="book-exp-label">Summary</div>
-            <p>Rich Dad Poor Dad contrasts two approaches to money — one focused on job security and one focused on financial independence through investing and asset building. Kiyosaki challenges the traditional idea that a good education and a stable job are enough to build wealth, arguing instead for financial literacy and investment thinking.</p>
+            <p>Rich Dad Poor Dad contrasts two approaches to money &mdash; one focused on job security and one focused on financial independence through investing and asset building. Kiyosaki challenges the traditional idea that a good education and a stable job are enough to build wealth, arguing instead for financial literacy and investment thinking.</p>
             <div class="book-exp-label">Connection to My Field</div>
             <p>In construction and facilities management, understanding financial concepts like assets, liabilities, and return on investment is critical when evaluating building projects and infrastructure decisions. This book gave me a new lens to view project economics and helped me understand why financial awareness matters as much as technical skill for a construction professional.</p>
             <div class="book-exp-label">My Takeaway</div>
@@ -2271,7 +2388,7 @@
     </div>
   </section>
 
-  <!-- REFLECTION — ✏️ Replace quote and all 4 points with your real thoughts -->
+    <!-- REFLECTION — ✏️ Replace quote and all 4 points with your real thoughts -->
   <section id="reflection">
     <div class="inner reveal">
       <p class="section-tag">Semester Reflection</p>
@@ -2348,7 +2465,7 @@
   <!-- FOOTER -->
   <footer>
     © 2026 Harshavardhan Tumma &nbsp;·&nbsp; M.S. in Construction and Facilities Engineering<br/>
-    <span style="color:#3a3a3c;">University of North Carolina at Charlotte, NC</span>
+    <span style="color:#3a3a3c;">University of North Carolina at Charlotte, Charlotte, NC</span>
   </footer>
 
   <!-- JAVASCRIPT -->
@@ -2509,15 +2626,136 @@
       }
     }
 
-    // Toggle book cards expand/collapse
-    function toggleBook(card) {
+    // ─── NEW FUNCTIONS ───────────────────────────────────
+
+    // Toggle book cards — AirPods style (content changes in card)
+    function toggleBookCard(card) {
       var isOpen = card.classList.contains('open');
       document.querySelectorAll('.book-card.open').forEach(function(c) { c.classList.remove('open'); });
       if (!isOpen) card.classList.add('open');
     }
+    function toggleBook(card) { toggleBookCard(card); }
 
-    // Toggle article cards expand/collapse
-    function toggleArticle(card) {
+    // Open article modal
+    function openArticleModal(card) {
+      var overlay = document.getElementById('article-modal-overlay');
+      var weekEl = card.querySelector('.week-pill');
+      var titleEl = card.querySelector('h3');
+      var sourceEl = card.querySelector('.article-source');
+      var expandedEl = card.querySelector('.article-expanded');
+      var actionsEl = card.querySelector('.article-action-row');
+      document.getElementById('article-modal-week').textContent = weekEl ? weekEl.textContent.trim() : '';
+      document.getElementById('article-modal-title').textContent = titleEl ? titleEl.textContent.trim() : '';
+      document.getElementById('article-modal-source').textContent = sourceEl ? sourceEl.textContent.trim() : '';
+      var bodyEl = document.getElementById('article-modal-body');
+      bodyEl.innerHTML = '';
+      if (expandedEl) {
+        expandedEl.querySelectorAll('.exp-section').forEach(function(sec) {
+          var div = document.createElement('div');
+          div.className = 'modal-exp-section';
+          div.innerHTML = sec.innerHTML;
+          bodyEl.appendChild(div);
+        });
+      }
+      var actEl = document.getElementById('article-modal-actions');
+      actEl.innerHTML = '';
+      if (actionsEl) {
+        actionsEl.querySelectorAll('a').forEach(function(btn) {
+          var a = btn.cloneNode(true);
+          actEl.appendChild(a);
+        });
+      }
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeArticleModal(e) {
+      if (e === null || e.target === document.getElementById('article-modal-overlay')) {
+        document.getElementById('article-modal-overlay').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    function toggleArticle(card) { openArticleModal(card); }
+
+    // Add + button to each article card at runtime
+    document.querySelectorAll('.article-card').forEach(function(card) {
+      if (card.querySelector('.apple-plus-btn')) return;
+      var btn = document.createElement('button');
+      btn.className = 'apple-plus-btn';
+      btn.setAttribute('aria-label', 'Open summary');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+      btn.onclick = function(e) { e.stopPropagation(); openArticleModal(card); };
+      card.appendChild(btn);
+    });
+
+    // ── SEARCH ──────────────────────────────────────────────
+    var _searchIndex = [
+      {icon:'👤',label:'Section',title:'About Me',href:'#about'},
+      {icon:'📁',label:'Section',title:'Projects & Assignments',href:'#projects'},
+      {icon:'📰',label:'Section',title:'AI Article Summaries',href:'#articles'},
+      {icon:'📚',label:'Section',title:'Book Reviews',href:'#book'},
+      {icon:'💭',label:'Section',title:'Semester Reflection',href:'#reflection'},
+      {icon:'📬',label:'Section',title:'Contact',href:'#contact'},
+      {icon:'💼',label:'Experience',title:'Teaching Assistant — UNCC',href:'#about'},
+      {icon:'🏗',label:'Experience',title:'Planning Engineer — MEIL',href:'#about'},
+      {icon:'🎓',label:'Education',title:'M.S. Construction & Facilities Engineering',href:'#about'},
+      {icon:'📄',label:'Resume',title:'View & Download Resume',href:'#about'},
+      {icon:'🏥',label:'Project 01',title:'FM Operations Playbook',href:'#projects'},
+      {icon:'📰',label:'Project 02',title:'Construction Risk & Safety Analysis',href:'#projects'},
+      {icon:'🔬',label:'Project 03',title:'AI Adoption in AEC Research Report',href:'#projects'},
+      {icon:'💻',label:'Project 04',title:'This Portfolio Website',href:'#projects'},
+      {icon:'🛣',label:'Project 05',title:'Roadway Infrastructure Capital Costing',href:'#projects'},
+      {icon:'🛣',label:'B.Tech Project',title:'6-Lane Flexible Pavement Design — IIT PAVE',href:'#undergrad-projects'},
+      {icon:'♻️',label:'B.Tech Project',title:'Recycled Aggregate in Concrete',href:'#undergrad-projects'},
+      {icon:'📘',label:'Book',title:'Atomic Habits — James Clear',href:'#book'},
+      {icon:'💰',label:'Book',title:'Rich Dad Poor Dad — Kiyosaki',href:'#book'},
+    ];
+    function openSearch() {
+      document.getElementById('search-modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function() { document.getElementById('search-q').focus(); }, 80);
+      runSearch();
+    }
+    function closeSearch(e) {
+      if (e === null || e.target === document.getElementById('search-modal-overlay')) {
+        document.getElementById('search-modal-overlay').classList.remove('open');
+        document.body.style.overflow = '';
+        var q = document.getElementById('search-q');
+        if (q) q.value = '';
+      }
+    }
+    function runSearch() {
+      var q = (document.getElementById('search-q').value || '').trim().toLowerCase();
+      var resultsEl = document.getElementById('search-results');
+      var emptyEl = document.getElementById('search-empty');
+      var all = _searchIndex.slice();
+      // Add articles dynamically
+      document.querySelectorAll('.article-card').forEach(function(card) {
+        var wk = card.querySelector('.week-pill');
+        var ti = card.querySelector('h3');
+        if (wk && ti) all.push({icon:'📰',label:wk.textContent.trim(),title:ti.textContent.trim(),href:'#articles'});
+      });
+      var seen = {}; var filtered = [];
+      all.forEach(function(item) {
+        var match = !q || item.title.toLowerCase().includes(q) || item.label.toLowerCase().includes(q);
+        if (match && !seen[item.title]) { seen[item.title] = true; filtered.push(item); }
+      });
+      filtered = filtered.slice(0, 12);
+      resultsEl.innerHTML = '';
+      emptyEl.style.display = filtered.length ? 'none' : 'block';
+      filtered.forEach(function(item) {
+        var a = document.createElement('a');
+        a.className = 'search-result-item'; a.href = item.href;
+        a.onclick = function() { closeSearch(null); };
+        a.innerHTML = '<span class="search-result-icon">'+item.icon+'</span><div><div class="search-result-label">'+item.label+'</div><div class="search-result-title">'+item.title+'</div></div>';
+        resultsEl.appendChild(a);
+      });
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { closeArticleModal(null); closeSearch(null); }
+    });
+
+    // ─── OLD TOGGLE ARTICLE (kept for close buttons) ──────
+    function toggleArticle_close(card) {
       var isOpen = card.classList.contains('open');
       var isMobile = window.innerWidth <= 700;
       var scrollWrap = document.querySelector('.articles-scroll-wrap');
@@ -2557,63 +2795,34 @@
       var u = 'harsha20112000';
       var d = 'gmail.com';
       var email = u + '@' + d;
-      var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-      var txt = document.getElementById('email-text');
+      var chip = document.getElementById('email-chip');
+      var txt  = document.getElementById('email-text');
       if (txt) { txt.textContent = email; }
 
-      // Email chip in Contact section
-      var chip = document.getElementById('email-chip');
+      // Copy email to clipboard on click — works on all platforms
       if (chip) {
-        if (isMobile) {
-          // Mobile — open mail app directly
-          chip.href = 'mailto:' + email;
-          chip.onclick = null;
-        } else {
-          // Desktop — copy to clipboard (mailto unreliable on Windows)
-          chip.href = '#';
-          chip.onclick = function(e) {
-            e.preventDefault();
-            navigator.clipboard.writeText(email).then(function() {
-              var orig = chip.innerHTML;
-              chip.innerHTML = chip.innerHTML.replace(email, 'Copied!');
-              chip.style.background = '#0071e3';
-              chip.style.color = '#fff';
-              setTimeout(function() {
-                chip.innerHTML = orig;
-                chip.style.background = '';
-                chip.style.color = '';
-              }, 2000);
-            });
-          };
-        }
-      }
-
-      // Nav email icon (top right)
-      var navEmail = document.getElementById('nav-email-btn');
-      if (navEmail) {
-        if (isMobile) {
-          navEmail.href = 'mailto:' + email;
-          navEmail.onclick = null;
-        } else {
-          navEmail.href = '#';
-          navEmail.onclick = function(e) {
-            e.preventDefault();
-            navigator.clipboard.writeText(email).then(function() {
-              var orig = navEmail.title;
-              navEmail.title = 'Copied!';
-              navEmail.style.opacity = '0.5';
-              setTimeout(function() {
-                navEmail.title = orig;
-                navEmail.style.opacity = '';
-              }, 2000);
-            });
-          };
-        }
+        chip.href = '#';
+        chip.onclick = function(e) {
+          e.preventDefault();
+          navigator.clipboard.writeText(email).then(function() {
+            var orig = chip.innerHTML;
+            chip.innerHTML = chip.innerHTML.replace(email, 'Copied!');
+            chip.style.background = '#0071e3';
+            chip.style.color = '#fff';
+            setTimeout(function() {
+              chip.innerHTML = orig;
+              chip.style.background = '';
+              chip.style.color = '';
+            }, 2000);
+          });
+          return false;
+        };
       }
 
       var li = document.getElementById('linkedin-chip');
       if (li) { li.href = 'https://www.linkedin.com/in/harshavardhantumma'; }
+      var navEmail = document.getElementById('nav-email-btn');
+      if (navEmail) { navEmail.href = 'mailto:' + email; navEmail.onclick = null; }
       var navLi = document.getElementById('nav-linkedin-btn');
       if (navLi) { navLi.href = 'https://www.linkedin.com/in/harshavardhantumma'; }
       var navEmail2 = document.getElementById('nav-email');
@@ -2643,12 +2852,15 @@
       if (!isOpen) card.classList.add('open');
     }
 
-    // About section tab switcher
+    // About section tab switcher — click active tab again to close
     function switchTab(e, panelId) {
+      var isAlreadyActive = e.target.classList.contains('active');
       document.querySelectorAll('.about-tab').forEach(function(t) { t.classList.remove('active'); });
       document.querySelectorAll('.about-panel').forEach(function(p) { p.classList.remove('active'); });
-      e.target.classList.add('active');
-      document.getElementById('panel-' + panelId).classList.add('active');
+      if (!isAlreadyActive) {
+        e.target.classList.add('active');
+        document.getElementById('panel-' + panelId).classList.add('active');
+      }
     }
 
     // Scrollspy — highlight active nav link as user scrolls
@@ -2688,68 +2900,195 @@
   </script>
   <!-- MOBILE SAFETY NET -->
   <style>
+  /* ── SEARCH MODAL ─────────────────────────────── */
+  #search-modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    align-items: flex-start; justify-content: center;
+    padding-top: 6rem;
+  }
+  #search-modal-overlay.open { display: flex; }
+  #search-modal {
+    background: #ffffff; border-radius: 18px;
+    width: min(600px, 92vw); padding: 1.25rem;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.22);
+  }
+  #search-input-wrap {
+    display: flex; align-items: center; gap: 0.75rem;
+    border: 1.5px solid #e0e0e5; border-radius: 12px;
+    padding: 0.65rem 1rem; margin-bottom: 0.75rem;
+  }
+  #search-input-wrap svg { width:18px;height:18px;stroke:#86868b;flex-shrink:0; }
+  #search-q {
+    flex:1; border:none; outline:none; font-size:1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    color:#1d1d1f;
+  }
+  #search-results { max-height: 320px; overflow-y: auto; }
+  .search-result-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 0.5rem; border-radius: 10px; cursor: pointer;
+    text-decoration: none; transition: background 0.15s;
+  }
+  .search-result-item:hover { background: #f5f5f7; }
+  .search-result-icon { font-size: 1.3rem; width:32px;text-align:center;flex-shrink:0; }
+  .search-result-label { font-size: 0.76rem; font-weight: 700; color:#0071e3; margin-bottom:0.1rem; }
+  .search-result-title { font-size: 0.9rem; font-weight: 600; color:#1d1d1f; }
+  #search-empty { font-size:0.9rem;color:#86868b;text-align:center;padding:1.5rem 0; display:none; }
+  #search-close-btn {
+    background:none;border:none;cursor:pointer;
+    font-size:1.2rem;color:#86868b;line-height:1;padding:0;flex-shrink:0;
+  }
+
+  /* ── ARTICLE MODAL ─────────────────────────────── */
+  #article-modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2001;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    align-items: center; justify-content: center;
+    padding: 1.5rem;
+  }
+  #article-modal-overlay.open { display: flex; }
+  #article-modal {
+    background: #ffffff; border-radius: 22px;
+    width: min(680px, 96vw); max-height: 88vh;
+    overflow-y: auto; padding: 2.5rem;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.28);
+    position: relative;
+  }
+  #article-modal-close {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #f5f5f7; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; color: #1d1d1f; transition: background 0.2s;
+  }
+  #article-modal-close:hover { background: #e8e8ed; }
+  #article-modal-week { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0071e3; margin-bottom: 0.5rem; }
+  #article-modal-title { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif; font-size: clamp(1.4rem,4vw,1.9rem); font-weight: 700; letter-spacing:-0.03em; color:#000; margin-bottom:0.4rem; line-height:1.15; }
+  #article-modal-source { font-size:0.82rem; color:#86868b; margin-bottom:1.5rem; }
+  #article-modal-body .modal-exp-section { background:#f5f5f7; border-radius:12px; padding:1.1rem; margin-bottom:0.85rem; }
+  #article-modal-body .modal-exp-section .exp-label { font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0071e3;margin-bottom:0.35rem;display:block; }
+  #article-modal-body .modal-exp-section p { font-size:0.9rem;color:#6e6e73;line-height:1.8;margin:0; }
+  #article-modal-actions { display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.25rem;padding-top:1.1rem;border-top:1px solid #e8e8ed; }
+
+  /* ── APPLE PLUS BUTTON on article cards ───────── */
+  .apple-plus-btn {
+    position: absolute; bottom: 14px; right: 14px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #1d1d1f; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+    pointer-events: auto; flex-shrink: 0; z-index: 2;
+  }
+  .apple-plus-btn:hover { background: #0071e3; transform: scale(1.1); }
+  .apple-plus-btn svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2.5; }
+  /* Make article-card position:relative to anchor the button */
+  .article-card { position: relative !important; }
+
+  /* Book cards use original styles from main CSS */
+
   @media screen and (max-width: 700px) {
-    .nav-links { display: none !important; flex: none !important; min-width: 0 !important; }
+    /* ── NAV ────────────────────────────────── */
+    .nav-links { display: none !important; flex: none !important; }
     .nav-links.mobile-open {
       display: flex !important; flex-direction: column !important;
-      position: fixed !important; top: 52px !important;
-      left: 0 !important; right: 0 !important;
+      position: fixed !important; top: 52px !important; left: 0 !important; right: 0 !important;
       background: rgba(255,255,255,0.97) !important;
-      backdrop-filter: blur(20px) !important;
+      backdrop-filter: blur(20px) !important; -webkit-backdrop-filter: blur(20px) !important;
       border-bottom: 1px solid rgba(0,0,0,0.08) !important;
-      padding: 0.5rem 0 1rem !important; z-index: 9999 !important;
-      justify-content: flex-start !important; gap: 0 !important;
+      padding: 0.5rem 0 1rem !important; gap: 0 !important;
+      z-index: 9999 !important; justify-content: flex-start !important;
       transform: none !important;
     }
     .nav-links.mobile-open li { border-bottom: 1px solid #f0f0f5 !important; }
-    .nav-links.mobile-open a { display: block !important; padding: 0.9rem 1.5rem !important; font-size: 0.95rem !important; }
-    #nav-email-btn, #nav-linkedin-btn { display: none !important; }
+    .nav-links.mobile-open li:last-child { border-bottom: none !important; }
+    .nav-links.mobile-open a { display: block !important; padding: 0.9rem 1.5rem !important; font-size: 0.95rem !important; color: #1d1d1f !important; }
+    .nav-links.mobile-open a.active { color: #0071e3 !important; font-weight: 700 !important; }
+    #nav-email-btn, #nav-linkedin-btn { display: flex !important; }
+    #nav-email-btn svg, #nav-linkedin-btn svg { width: 17px !important; height: 17px !important; }
     .hamburger { display: flex !important; }
-    nav { padding: 0 1rem !important; }
-    .nav-logo { font-size: 0.78rem !important; white-space: nowrap !important; }
+    nav { padding: 0 0.75rem !important; }
+    .nav-logo { font-size: 0.72rem !important; white-space: nowrap !important; }
+    .logo-full { display: none !important; }
+    .logo-short { display: inline !important; font-size: 0.88rem !important; font-weight: 700 !important; letter-spacing: 0.02em !important; color: #0071e3 !important; }
+    .nav-actions { gap: 0.55rem !important; }
 
-    .about-grid { display: block !important; }
-    .about-grid > .stat-grid { margin-top: 1.5rem !important; }
-    .stat-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0.75rem !important; }
-
-    .projects-grid { display: block !important; border: 1px solid #2c2c2e !important; border-radius: 16px !important; overflow: hidden !important; }
-    .project-card-wrap { display: block !important; border-radius: 0 !important; }
-    .project-card { border-radius: 0 !important; padding: 0.9rem 1rem !important; border: none !important; border-bottom: 1px solid #2c2c2e !important; }
-    .project-card-wrap:last-child .project-card { border-bottom: none !important; }
-    .project-number { font-size: 0.58rem !important; }
-    .project-card:not(.open) .project-preview { display: none !important; }
-    .project-card:not(.open) .project-tags { display: none !important; }
-    .project-body-grid { display: block !important; }
-    .project-body-section { margin-bottom: 0.75rem !important; }
-
-    .carousel-nav { display: none !important; }
-    .articles-scroll-wrap { overflow: hidden !important; -webkit-mask-image: none !important; mask-image: none !important; }
-    .articles-grid { display: block !important; border: 1px solid #e8e8ed !important; border-radius: 16px !important; overflow: hidden !important; padding: 0 !important; width: auto !important; }
-    .article-card-wrap { display: block !important; min-width: 0 !important; width: 100% !important; border-radius: 0 !important; }
-    .article-card { border-radius: 0 !important; border: none !important; border-bottom: 1px solid #e8e8ed !important; box-shadow: none !important; min-width: 0 !important; }
-    .article-card-wrap:last-child .article-card { border-bottom: none !important; }
-    /* Article icons — show on mobile but smaller */
-    .article-icon { display: flex !important; height: 52px !important; font-size: 1.4rem !important; }
-    .article-card:not(.open) .preview { display: none !important; }
-    .article-card.open .article-expanded { display: block !important; }
-    .article-card.open .exp-section { display: block !important; margin-bottom: 0.6rem !important; height: auto !important; }
-    .article-action-row { flex-direction: column !important; }
-    .article-btn { width: 100% !important; justify-content: center !important; }
-
-    .books-grid { display: block !important; }
-    .book-card { margin-bottom: 0.75rem !important; }
-    .book-cover-wrap { min-height: auto !important; }
-    .book-expanded { padding: 1.25rem !important; }
-
-    .reflection-card { padding: 1.75rem 1.25rem !important; }
-    .reflection-grid { display: block !important; }
-    .reflection-item { margin-bottom: 1rem !important; }
-
-    .contact-chips { flex-direction: column !important; align-items: stretch !important; }
-    .chip { justify-content: center !important; }
-
+    /* ── SECTIONS ────────────────────────────── */
     section { padding: 4rem 1.25rem !important; }
     .hero-bg { display: none !important; }
     .inner { padding: 0 !important; }
+
+    /* ── PROJECTS — separate rounded cards ─── */
+    .projects-grid { display: flex !important; flex-direction: column !important; gap: 0.75rem !important; border: none !important; overflow: visible !important; border-radius: 0 !important; }
+    .project-card-wrap { border-radius: 16px !important; transform: none !important; box-shadow: none !important; grid-column: auto !important; }
+    .project-card-wrap.featured, .project-card-wrap.open-proj { grid-column: auto !important; }
+    .project-card { border-radius: 16px !important; border: 1.5px solid #2c2c2e !important; padding: 0.9rem 1rem !important; border-bottom: 1.5px solid #2c2c2e !important; }
+    .project-card.open { border: 1.5px solid #0071e3 !important; box-shadow: 0 0 0 1px #0071e3, 0 6px 24px rgba(0,113,227,0.2) !important; }
+    .project-number { font-size: 0.58rem !important; margin-bottom: 0.15rem !important; }
+    .project-card h3 { font-size: 0.88rem !important; margin-bottom: 0 !important; }
+    .project-card:not(.open) .project-preview { display: none !important; }
+    .project-card:not(.open) .project-tags { display: none !important; }
+    .project-card.open .project-preview { display: block !important; margin-top: 0.5rem !important; }
+    .project-card.open .project-tags { display: flex !important; margin-top: 0.75rem !important; }
+    .project-body-grid { grid-template-columns: 1fr !important; }
+
+    /* ── ARTICLES — horizontal scroll on mobile ── */
+    .carousel-nav { display: none !important; }
+    .articles-scroll-wrap { overflow-x: auto !important; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%) !important; mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%) !important; }
+    .articles-grid { display: flex !important; flex-direction: row !important; width: max-content !important; gap: 0.85rem !important; padding: 0.5rem 0.75rem 1.25rem !important; }
+    .article-card-wrap { flex: 0 0 210px !important; width: 210px !important; border-radius: 18px !important; min-width: 0 !important; transform: none !important; }
+    .article-card-wrap.open-wrap { flex: 0 0 210px !important; min-width: 0 !important; }
+    .article-card { border-radius: 18px !important; background: #f5f5f7 !important; border: 1px solid transparent !important; border-bottom: 1px solid transparent !important; box-shadow: none !important; }
+    .article-card.open { background: #f5f5f7 !important; border-color: #0071e3 !important; box-shadow: 0 4px 16px rgba(0,113,227,0.15) !important; }
+    /* On mobile, tapping any article card opens the modal */
+    .article-expanded { display: none !important; }
+    .article-card.open .article-expanded { display: none !important; }
+    .article-icon { height: 60px !important; font-size: 1.8rem !important; border-radius: 18px 18px 0 0 !important; }
+    .article-card-body { padding: 0.75rem 0.85rem 2.75rem !important; }
+    .article-card h3 { font-size: 0.82rem !important; margin-bottom: 0.2rem !important; }
+    .week-pill { font-size: 0.6rem !important; margin-bottom: 0.2rem !important; }
+    .preview { font-size: 0.75rem !important; }
+
+    /* ── BOOKS — mobile ─────────────────────── */
+    .books-grid { display: flex !important; flex-direction: column !important; gap: 1rem !important; }
+    .book-cover-wrap { padding: 1rem !important; gap: 0.85rem !important; min-height: auto !important; }
+    .book-cover-wrap img { width: 80px !important; }
+    .book-title { font-size: 1.1rem !important; }
+    .book-card:not(.open) .book-cover-wrap { height: auto !important; }
+
+    /* ── ABOUT ───────────────────────────────── */
+    .about-grid { display: flex !important; flex-direction: column !important; gap: 2rem !important; }
+    .stat-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0.75rem !important; order: 2; }
+    .stat-card { min-height: 65px !important; padding: 0.65rem 0.75rem !important; }
+    .stat-number { font-size: 1.1rem !important; }
+    .stat-label { font-size: 0.65rem !important; }
+    .about-tabs { display: flex !important; overflow-x: auto !important; flex-wrap: nowrap !important; scrollbar-width: none !important; gap: 0.4rem !important; padding-bottom: 0.25rem !important; }
+    .about-tabs::-webkit-scrollbar { display: none; }
+    .about-tab { white-space: nowrap !important; flex-shrink: 0 !important; font-size: 0.74rem !important; padding: 0.3rem 0.85rem !important; }
+    .exp-card { padding: 0.85rem 0.9rem !important; }
+    .exp-card-role { font-size: 0.8rem !important; }
+    .exp-card-org { font-size: 0.7rem !important; }
+    .skills-grid { grid-template-columns: 1fr !important; }
+    .resume-panel-wrap iframe, .resume-panel-wrap > div:last-child { display: none !important; }
+
+    /* ── REFLECTION ──────────────────────────── */
+    .reflection-card { padding: 1.75rem 1.25rem !important; }
+    .reflection-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
+    .quote-mark { font-size: 3.5rem !important; }
+    .quote-text { font-size: 1rem !important; margin-bottom: 1.5rem !important; padding-bottom: 1.5rem !important; }
+
+    /* ── CONTACT ─────────────────────────────── */
+    .contact-chips { flex-direction: column !important; align-items: stretch !important; }
+    .chip { justify-content: center !important; }
+
+    /* ── BACK TO TOP ─────────────────────────── */
+    #back-to-top { bottom: 1.25rem !important; right: 1.25rem !important; width: 40px !important; height: 40px !important; }
+
+    /* ── SEARCH MODAL on mobile ─────────────── */
+    #search-modal { padding: 1rem !important; }
+    #article-modal { padding: 1.25rem !important; }
+    #article-modal-title { font-size: 1.2rem !important; }
   }
   </style>
