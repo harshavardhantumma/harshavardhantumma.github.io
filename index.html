@@ -614,6 +614,27 @@
       border: 1.5px solid #0071e3;
     }
     .article-btn-primary:hover { background: #0071e3; color: #ffffff; }
+
+    /* Project action buttons — same pill style as article buttons */
+    .project-action-row {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 1.25rem; padding-top: 1.1rem;
+      border-top: 1px solid #3a3a3c;
+    }
+    .project-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.82rem; font-weight: 600; text-decoration: none;
+      padding: 0.4rem 1.1rem; border-radius: 999px;
+      border: 1.5px solid #0071e3; color: #0071e3;
+      background: transparent;
+      transition: background 0.25s, color 0.25s;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      white-space: nowrap;
+    }
+    .project-btn:hover { background: #0071e3; color: #fff; }
+    .project-btn.disabled {
+      border-color: #636366; color: #636366; cursor: default; pointer-events: none;
+    }
     .article-btn-secondary {
       background: transparent; color: #0071e3;
       border: 1.5px solid #0071e3;
@@ -1620,7 +1641,9 @@
                   <p>NotebookLM can synthesize complex FM documentation into accessible, role-specific guidance. The first 72 hours and first 30 days framework proved especially effective for structuring the playbook around real operational priorities.</p>
                 </div>
               </div>
-              <a href="https://notebooklm.google.com/notebook/756bd89a-f1fa-4068-aaab-1533248b4e28" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">View NotebookLM &#8599;</a>
+              <div class="project-action-row">
+                <a href="https://notebooklm.google.com/notebook/756bd89a-f1fa-4068-aaab-1533248b4e28" target="_blank" class="project-btn">&#127757; View NotebookLM &#8599;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1654,6 +1677,9 @@
                   <div class="project-body-label">Deliverables</div>
                   <p>A PowerPoint slide deck and a 5–7 minute recorded walkthrough presentation submitted to Canvas. The assignment bridges current industry events with classroom risk and safety theory — demonstrating applied critical thinking on a live construction scenario.</p>
                 </div>
+              </div>
+              <div class="project-action-row">
+                <a href="https://harshavardhantumma.github.io/project02-news-presentation.pdf" target="_blank" class="project-btn">&#128250; Presentation &#8599;</a>
               </div>
             </div>
           </div>
@@ -1691,7 +1717,11 @@
                 </div>
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.25rem;">
-                <a href="https://harshavardhantumma.github.io/Final_Project_-_Literature_Review.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128196; Literature Review &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/Final_Project_-_Literature_Review.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128196; Literature Review &#8599;</a>
+              </div>
+              <div class="project-action-row">
+                <a href="https://harshavardhantumma.github.io/Final_Project_-_Literature_Review.pdf" target="_blank" class="project-btn">&#128196; Literature Review &#8599;</a>
+                <span class="project-btn disabled">&#128336; Final Report — Soon</span>
               </div>
             </div>
           </div>
@@ -1726,6 +1756,9 @@
                   <div class="project-body-label">Key Lesson</div>
                   <p>AI removes the barrier between having an idea and being able to execute it. A construction professional does not need to learn software engineering — they need to learn how to communicate clearly with AI tools. That skill is more valuable in the AEC industry than knowing how to write code.</p>
                 </div>
+              </div>
+              <div class="project-action-row">
+                <a href="https://github.com/harshavardhantumma/harshavardhantumma.github.io" target="_blank" class="project-btn">&#128187; View on GitHub &#8599;</a>
               </div>
             </div>
           </div>
@@ -1762,9 +1795,11 @@
                   <p>HMA shows lower NPV cost savings of $14.59/SY over PCC under base case assumptions. The decision is most sensitive to PCC and HMA initial costs. When HMA initial and maintenance costs increase together, the savings decrease and the decision can reverse in favour of PCC — making scenario analysis critical for resilient infrastructure planning.</p>
                 </div>
               </div>
-              <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.25rem;">
-                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-idea.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Project Idea Presentation &#8599;</a>
-                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-preliminary.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Preliminary Presentation &#8599;</a>
+              <div class="project-action-row">
+                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-final.pdf" target="_blank" class="project-btn">&#128196; Final Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-finalreport.pdf" target="_blank" class="project-btn">&#128196; Final Report &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-preliminary.pdf" target="_blank" class="project-btn">&#128250; Preliminary &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-idea.pdf" target="_blank" class="project-btn">&#128250; Project Idea &#8599;</a>
               </div>
             </div>
           </div>
@@ -1803,8 +1838,8 @@
                 </div>
               </div>
               <div class="project-action-row">
-                <a href="https://harshavardhantumma.github.io/undergrad_majorprojectreport.pdf" target="_blank" class="project-btn project-btn-primary">&#128196; Full Report &#8599;</a>
-                <a href="https://harshavardhantumma.github.io/undergrad_majorprojectpresentation.pdf" target="_blank" class="project-btn" style="border:1.5px solid #0071e3;color:#0071e3;background:transparent;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/undergrad_majorprojectreport.pdf" target="_blank" class="project-btn">&#128196; Full Report &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/undergrad_majorprojectpresentation.pdf" target="_blank" class="project-btn">&#128250; Presentation &#8599;</a>
               </div>
             </div>
           </div>
@@ -1841,8 +1876,8 @@
                 </div>
               </div>
               <div class="project-action-row">
-                <a href="https://harshavardhantumma.github.io/undergrad_minorprojectreport.pdf" target="_blank" class="project-btn project-btn-primary">&#128196; Full Report &#8599;</a>
-                <a href="https://harshavardhantumma.github.io/undergrad_minorprojectpresentation.pdf" target="_blank" class="project-btn" style="border:1.5px solid #0071e3;color:#0071e3;background:transparent;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/undergrad_minorprojectreport.pdf" target="_blank" class="project-btn">&#128196; Full Report &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/undergrad_minorprojectpresentation.pdf" target="_blank" class="project-btn">&#128250; Presentation &#8599;</a>
               </div>
             </div>
           </div>
@@ -1896,7 +1931,7 @@
                 <p>Large-scale AI infrastructure investments are directly increasing demand for construction projects &mdash; data centers, power systems, and advanced facilities. AI tools have the potential to transform construction planning, scheduling, cost estimation, and project management, while regulatory uncertainty means firms must carefully balance efficiency gains with workforce training and ethical AI use.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week02.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week02.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/6d5189ad-6aa2-4768-8918-9b3ad7658036" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -1931,7 +1966,7 @@
                 <p>AGI could transform construction through fully autonomous decision-making across design, scheduling, cost estimation, and risk management. However, adoption raises serious concerns about workforce displacement, ethical responsibility, and accountability for autonomous decisions in safety-critical construction environments &mdash; making robust governance frameworks essential.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week03.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week03.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/98d094ea-f8ea-4e5f-8a09-2b965d171bea" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -1966,7 +2001,7 @@
                 <p>Humanist Superintelligence could transform construction by enhancing planning, design, and operations &mdash; optimizing structural designs, predicting project risks, and enabling real-time building performance simulation. By keeping humans in control, construction professionals could be empowered to make better decisions while integrating cutting-edge AI across large infrastructure and building projects.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week05.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week05.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/nyYRAmaAEfT" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2001,7 +2036,7 @@
                 <p>This article is the most directly relevant to my field. AI can reduce rework, improve productivity, enhance safety, and support informed strategic decisions. Early adopters will gain significant competitive advantages. The article also highlights that AI is reshaping workforce skills &mdash; increasing demand for professionals who can interpret data and manage digital systems on construction projects.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week06.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week06.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/f182440a-8316-497a-9fbf-713cdb2e874c" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2036,7 +2071,7 @@
                 <p>AI-powered BIM tools can streamline coordination, automate clash detection, assist with cost forecasting, and improve construction planning. These innovations are directly applicable to my studies in construction management. However, workforce adaptation and trust in AI technologies will be critical challenges as organizations transition toward AI-driven BIM workflows.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week07.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week07.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/FL5SC6mkhUL" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2071,7 +2106,7 @@
                 <p>AI agents could transform construction project management by autonomously handling document review, scheduling updates, safety reporting, and procurement workflows &mdash; freeing construction professionals to focus on higher-level decisions. The rapid cost reduction makes these tools increasingly accessible even for smaller construction firms and facilities management teams.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week08.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week08.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/be630edd-9d0d-4732-b94a-07d650e53167" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2106,7 +2141,7 @@
                 <p>Construction firms rely on custom software for scheduling, budgeting, and BIM. Vibe coding could allow site managers without coding backgrounds to build internal tools faster &mdash; but with hidden risks if the underlying code is fragile. This is especially critical for digital twin and IoT integrations managing sensors, drones, and real-time data pipelines on smart construction sites.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week10.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week10.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/HvVvh5MZuYt" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2141,7 +2176,7 @@
                 <p>The exponential growth of AI infrastructure creates a surge in demand for advanced civil engineering to design structures supporting extreme electrical and cooling loads. Sophisticated facility management will be crucial to sustainably operate these complex buildings. However, smaller construction firms lacking digital tools could be severely outpaced by larger tech-enabled corporations, mirroring the global inequality the UN report warns about.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week11.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week11.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/8204c972-c390-44d9-ad64-d9f0d4d321ef" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2176,7 +2211,7 @@
                 <p>National AI policy could directly influence adoption of AI tools in project management, scheduling, design review, and safety monitoring. The article&apos;s connection between AI growth, data center construction, and electricity demand means policy could indirectly create more construction projects in energy infrastructure. Clearer federal rules may also give construction firms more confidence to invest in AI technologies long-term.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week12.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week12.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/250fdd9e-1ab4-458c-a403-bc4f0872f8ee" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2211,7 +2246,7 @@
                 <p>For construction, AI-driven procurement could optimize material sourcing, vendor selection, and supply chain risk management &mdash; critical factors in controlling project costs and timelines. Faster, smarter procurement decisions directly reduce material waste and budget overruns. However, this also requires the construction industry to reskill procurement teams in data literacy, prompt engineering, and AI oversight capabilities.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week13.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week13.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/LG5d0sNYwdY" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2246,7 +2281,7 @@
                 <p>Construction companies increasingly use digital platforms for marketing, training, recruitment, and public communication. If AI-generated content becomes misleading, it could reduce trust in online project visuals, promotional material, or safety communication. The article&apos;s emphasis on labeling and transparency is directly relevant &mdash; construction will also need clear standards for when AI-generated content is being used to keep stakeholder communication credible and professional.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week14.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week14.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/772a2675-2b64-4cf3-9f3d-be4f3a309506" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2281,7 +2316,7 @@
                 <p>Construction is increasingly adopting AI for scheduling, cost estimation, generative design, safety monitoring, and BIM. But effective use demands critical, ethical judgment &mdash; not just technical ability. As the article notes, understanding a technology means knowing both when to use it and when not to &mdash; especially consequential in construction where AI-driven errors can result in safety hazards, budget overruns, or structural failures. This underscores the need for construction programs to build AI literacy alongside technical training.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week15.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week15.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://ai.invideo.io/watch/YDsZn8bXvrO" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
@@ -2316,7 +2351,7 @@
                 <p>DeepMind&apos;s research-first philosophy has direct relevance to construction AI adoption. Tools like AlphaFold demonstrate that patient, purpose-driven AI development can yield transformative real-world applications &mdash; a model the construction industry should consider when evaluating AI investments. Rather than chasing the fastest or cheapest AI tools, construction firms that invest in reliable, well-researched AI for structural analysis, project planning, and safety monitoring will build more sustainable competitive advantages.</p>
               </div>
               <div class="article-action-row">
-                <a href="https://harshavardhantumma.github.io/presentations/week16.pdf.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
+                <a href="https://harshavardhantumma.github.io/presentations/week16.pdf" target="_blank" class="article-btn article-btn-primary">&#128250; View Presentation &#8599;</a>
                 <a href="https://notebooklm.google.com/notebook/629691e4-30ff-4014-a35e-5c8728fc5821" target="_blank" class="article-btn article-btn-secondary">&#9654; Interactive Component &#8599;</a>
               </div>
               <div class="close-wrap"><button class="close-btn" onclick="toggleArticle(this.closest('.article-card')); event.stopPropagation()">Close &#8593;</button></div>
