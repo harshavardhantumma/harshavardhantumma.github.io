@@ -490,6 +490,7 @@
       border-radius: 22px;
       transition: transform 0.25s ease;
       display: flex; flex-direction: column;
+      height: 380px;
     }
     .article-card-wrap:hover {
       transform: translateY(-4px);
@@ -502,7 +503,7 @@
       border: 1.5px solid transparent; cursor: pointer; overflow: hidden;
       transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
       flex: 1; display: flex; flex-direction: column;
-      position: relative; min-height: 340px;
+      position: relative;
     }
     .article-card:hover {
       background: #ffffff;
@@ -520,11 +521,26 @@
     }
     .article-card.open:hover { transform: none; }
     /* Center the header + pill when card is open */
-    .article-card.open .article-card-body { padding: 1.4rem 1.4rem 0.75rem; }
-    .article-card.open .week-pill { text-align: left; }
+    .article-card.open .article-icon {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      font-size: 4.5rem;
+      padding: 0 1.4rem 1.25rem;
+      order: 2;
+      line-height: 1;
+      min-height: 130px;
+      background: transparent !important;
+    }
+    .article-card-body { padding: 1.4rem 1.4rem 0.75rem; order: 1; flex-shrink: 0; }
+    .article-card.open .week-pill {
+      display: block; text-align: left;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #6e6e73; margin-bottom: 0.5rem;
+    }
     .article-card.open h3 { text-align: left; }
-    .article-card.open .article-icon { height: 140px; font-size: 4.5rem; order: 2; }
-    .article-source {
+    .article-card.open     .article-source {
       display: none; font-size: 0.8rem; color: #6e6e73;
       text-align: center; margin-top: 0.35rem;
       font-style: normal; flex-basis: 100%; order: 3; width: 100%;
@@ -544,8 +560,7 @@
       background: #f5f5f7; border-radius: 12px; padding: 1.25rem;
       height: 100%;
     }
-    .article-icon { height: 140px; display: flex; align-items: flex-end; justify-content: flex-start; font-size: 4.5rem; flex-shrink: 0; padding: 0 1.4rem 1rem; order: 2; line-height: 1; }
-    .article-card-body { padding: 1.4rem 1.4rem 0.75rem; flex: 1; display: flex; flex-direction: column; order: 1; }
+        .article-card-body { padding: 1.4rem 1.4rem 0.75rem; flex: 1; display: flex; flex-direction: column; order: 1; }
     .article-card .preview { font-size: 0.86rem; color: #6e6e73; line-height: 1.72; flex: 1; }
     .article-card.open .article-expanded { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
     .close-wrap { grid-column: 1 / -1; padding-top: 0.5rem; border-top: 1px solid #e8e8ed; }
@@ -1164,8 +1179,7 @@
         .article-card-body { padding: 0.85rem 1rem !important; }
       .article-card h3 { font-size: 0.88rem !important; margin-bottom: 0 !important; }
       /* Article icons — show on mobile but smaller */
-    .article-icon { display: flex !important; height: 52px !important; font-size: 1.4rem !important; }
-    .article-card:not(.open) .preview { display: none !important; }
+        .article-card:not(.open) .preview { display: none !important; }
       .week-pill { font-size: 0.62rem !important; margin-bottom: 0.2rem !important; }
       .article-card.open {
         background: #f5f8ff !important;
@@ -1243,7 +1257,6 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#articles">Articles</a></li>
       <li><a href="#book">Book</a></li>
-      <li><a href="#undergrad-projects">B.Tech</a></li>
       <li><a href="#reflection">Reflection</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -1292,6 +1305,14 @@
       <div id="article-modal-source"></div>
       <div id="article-modal-body"></div>
       <div id="article-modal-actions"></div>
+    </div>
+  </div>
+
+  <!-- PROJECT MODAL -->
+  <div id="project-modal-overlay" onclick="closeProjectModal(event)" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.5);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);align-items:center;justify-content:center;padding:2rem;">
+    <div id="project-modal" style="background:#fff;border-radius:24px;width:min(1020px,96vw);max-height:92vh;overflow-y:auto;position:relative;box-shadow:0 48px 120px rgba(0,0,0,0.3);">
+      <button onclick="closeProjectModal(null)" style="position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;border-radius:50%;background:#f5f5f7;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1;font-size:1rem;color:#1d1d1f;line-height:1;" aria-label="Close">&#10005;</button>
+      <div id="project-modal-content" style="padding:3rem 3rem 2.5rem;"></div>
     </div>
   </div>
 
@@ -1570,7 +1591,7 @@
       <div class="projects-grid">
 
         <div class="project-card-wrap featured reveal">
-          <div class="project-card" onclick="toggleProject(this)">
+          <div class="project-card" onclick="openProjectModal(this)">
             <div class="project-card-top">
               <div class="project-number">01</div>
               <div class="project-chevron"></div>
@@ -1600,13 +1621,12 @@
                 </div>
               </div>
               <a href="https://notebooklm.google.com/notebook/756bd89a-f1fa-4068-aaab-1533248b4e28" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">View NotebookLM &#8599;</a>
-              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
           </div>
         </div>
 
         <div class="project-card-wrap reveal delay-1">
-          <div class="project-card" onclick="toggleProject(this)">
+          <div class="project-card" onclick="openProjectModal(this)">
             <div class="project-card-top">
               <div class="project-number">02</div>
               <div class="project-chevron"></div>
@@ -1635,13 +1655,12 @@
                   <p>A PowerPoint slide deck and a 5–7 minute recorded walkthrough presentation submitted to Canvas. The assignment bridges current industry events with classroom risk and safety theory — demonstrating applied critical thinking on a live construction scenario.</p>
                 </div>
               </div>
-              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
           </div>
         </div>
 
         <div class="project-card-wrap reveal delay-2">
-          <div class="project-card" onclick="toggleProject(this)">
+          <div class="project-card" onclick="openProjectModal(this)">
             <div class="project-card-top">
               <div class="project-number">03</div>
               <div class="project-chevron"></div>
@@ -1674,13 +1693,12 @@
               <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.25rem;">
                 <a href="https://harshavardhantumma.github.io/Final_Project_-_Literature_Review.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128196; Literature Review &#8599;</a>
               </div>
-              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
           </div>
         </div>
 
         <div class="project-card-wrap reveal delay-1">
-          <div class="project-card" onclick="toggleProject(this)">
+          <div class="project-card" onclick="openProjectModal(this)">
             <div class="project-card-top">
               <div class="project-number">04</div>
               <div class="project-chevron"></div>
@@ -1709,13 +1727,12 @@
                   <p>AI removes the barrier between having an idea and being able to execute it. A construction professional does not need to learn software engineering — they need to learn how to communicate clearly with AI tools. That skill is more valuable in the AEC industry than knowing how to write code.</p>
                 </div>
               </div>
-              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
           </div>
         </div>
 
         <div class="project-card-wrap reveal delay-2">
-          <div class="project-card" onclick="toggleProject(this)">
+          <div class="project-card" onclick="openProjectModal(this)">
             <div class="project-card-top">
               <div class="project-number">05</div>
               <div class="project-chevron"></div>
@@ -1749,30 +1766,16 @@
                 <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-idea.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Project Idea Presentation &#8599;</a>
                 <a href="https://harshavardhantumma.github.io/presentations/capitalcosting_project-preliminary.pdf.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:600;color:#0071e3;text-decoration:none;border:1.5px solid #0071e3;padding:0.4rem 1rem;border-radius:999px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Preliminary Presentation &#8599;</a>
               </div>
-              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
 
-  <!-- UNDERGRADUATE PROJECTS -->
-  <section id="undergrad-projects" style="background:#f5f5f7;">
-    <div class="inner">
-      <div class="reveal">
-        <p class="section-tag">B.Tech Projects</p>
-        <h2 class="section-title">Undergraduate Research</h2>
-        <p class="section-sub">Major and minor research projects completed at Malla Reddy Institute of Technology, Secunderabad, India (2019&ndash;2022) &mdash; Bachelor of Technology in Civil Engineering, affiliated to JNTUH.</p>
-      </div>
-      <div class="projects-grid reveal" style="margin-top:2rem;">
-
-        <!-- Major Project -->
+        <!-- Undergraduate Projects -->
         <div class="project-card-wrap featured reveal">
-          <div class="project-card" onclick="toggleProject(this)">
+          <div class="project-card" onclick="openProjectModal(this)">
             <div class="project-card-top">
-              <div class="project-number" style="color:#0071e3;">Major</div>
+              <div class="project-number">06</div><div style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#86868b;margin-top:0.15rem;">B.Tech &bull; Major</div>
               <div class="project-chevron"></div>
             </div>
             <h3>6-Lane Flexible Pavement Design &mdash; IIT PAVE Software</h3>
@@ -1787,15 +1790,15 @@
             <div class="project-body">
               <div class="project-body-grid">
                 <div class="project-body-section">
-                  <div class="proj-label">Study Area</div>
+                  <div class="project-body-label">Study Area</div>
                   <p>NH365BB, Mothey (Suryapet) to Nayakulagudem (Kothagudem), Telangana &mdash; 10 km chainage. Designed for 47 MSA over a 20-year design period with 2,460 CVPD initial traffic.</p>
                 </div>
                 <div class="project-body-section">
-                  <div class="proj-label">Final Design</div>
+                  <div class="project-body-label">Final Design</div>
                   <p>Surface: 30mm &bull; DBM Binder: 140mm &bull; WMM Base: 200mm &bull; GSB Sub-base: 200mm &bull; Subgrade: 500mm. Satisfied both fatigue (horizontal tensile strain) and rutting (vertical compressive strain) criteria per IRC:37-2018.</p>
                 </div>
                 <div class="project-body-section">
-                  <div class="proj-label">Tools &amp; Methods</div>
+                  <div class="project-body-label">Tools &amp; Methods</div>
                   <p>IIT PAVE multilayer elastic analysis, California Bearing Ratio testing (90th percentile: 4.6%), 7-day 24-hour traffic count, IRC SP 19-2001 methodology, VG40 bitumen (E = 3000 MPa).</p>
                 </div>
               </div>
@@ -1803,16 +1806,15 @@
                 <a href="https://harshavardhantumma.github.io/undergrad_majorprojectreport.pdf" target="_blank" class="project-btn project-btn-primary">&#128196; Full Report &#8599;</a>
                 <a href="https://harshavardhantumma.github.io/undergrad_majorprojectpresentation.pdf" target="_blank" class="project-btn" style="border:1.5px solid #0071e3;color:#0071e3;background:transparent;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Presentation &#8599;</a>
               </div>
-              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
           </div>
         </div>
 
         <!-- Minor Project -->
         <div class="project-card-wrap reveal delay-1">
-          <div class="project-card" onclick="toggleProject(this)">
+          <div class="project-card" onclick="openProjectModal(this)">
             <div class="project-card-top">
-              <div class="project-number" style="color:#0071e3;">Minor</div>
+              <div class="project-number">07</div><div style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#86868b;margin-top:0.15rem;">B.Tech &bull; Minor</div>
               <div class="project-chevron"></div>
             </div>
             <h3>Recycled Aggregate in Concrete &mdash; Experimental Study</h3>
@@ -1826,15 +1828,15 @@
             <div class="project-body">
               <div class="project-body-grid">
                 <div class="project-body-section">
-                  <div class="proj-label">Key Finding</div>
+                  <div class="project-body-label">Key Finding</div>
                   <p>Up to 50% replacement of natural coarse aggregate with RCA achieves satisfactory compressive strength (24.06 MPa at 21 days vs 27.9 MPa conventional). Beyond 50%, strength drops significantly. 100% RCA suitable for non-load-bearing partitions only.</p>
                 </div>
                 <div class="project-body-section">
-                  <div class="proj-label">Methodology</div>
+                  <div class="project-body-label">Methodology</div>
                   <p>IS 10262:2009 mix design with w/c ratio 0.45. Six cubes cast per mix. Demolition waste broken into 20mm aggregate, sieve-analysed, specific gravity determined, and mixed at 0%, 25%, 50%, 75%, 100% RCA ratios. Compression tested at 7, 14, and 21 days.</p>
                 </div>
                 <div class="project-body-section">
-                  <div class="proj-label">Impact</div>
+                  <div class="project-body-label">Impact</div>
                   <p>RCA use reduces carbon footprint (0.0024 Mt CO&#8322; per tonne vs 0.0046 Mt for natural aggregate). Lifecycle cost reduced by 34&ndash;41%. Addresses India&rsquo;s 14.5 million tonne annual construction waste problem through circular material use.</p>
                 </div>
               </div>
@@ -1842,17 +1844,15 @@
                 <a href="https://harshavardhantumma.github.io/undergrad_minorprojectreport.pdf" target="_blank" class="project-btn project-btn-primary">&#128196; Full Report &#8599;</a>
                 <a href="https://harshavardhantumma.github.io/undergrad_minorprojectpresentation.pdf" target="_blank" class="project-btn" style="border:1.5px solid #0071e3;color:#0071e3;background:transparent;" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0071e3'">&#128250; Presentation &#8599;</a>
               </div>
-              <div class="project-close-wrap"><button class="project-close-btn" onclick="toggleProject(this.closest('.project-card')); event.stopPropagation()">Close &#8593;</button></div>
             </div>
           </div>
-        </div>
 
       </div>
     </div>
   </section>
 
 
-  <!-- ARTICLES -->
+    <!-- ARTICLES -->
   <section id="articles">
     <div class="inner">
       <div class="reveal">
@@ -1873,7 +1873,7 @@
         <!-- WEEK 2 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#fff3e0;">&#127758;</div>
+          <div class="article-icon">&#127758;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 02</span>
             <div class="article-header">
@@ -1908,7 +1908,7 @@
         <!-- WEEK 3 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-2" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#e8f0fe;">&#129504;</div>
+          <div class="article-icon">&#129504;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 03</span>
             <div class="article-header">
@@ -1943,7 +1943,7 @@
         <!-- WEEK 5 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-3" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#f0f4ff;">&#128640;</div>
+          <div class="article-icon">&#128640;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 05</span>
             <div class="article-header">
@@ -1978,7 +1978,7 @@
         <!-- WEEK 6 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#e8f5e9;">&#127959;</div>
+          <div class="article-icon">&#127959;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 06</span>
             <div class="article-header">
@@ -2013,7 +2013,7 @@
         <!-- WEEK 7 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-2" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#e3f2fd;">&#128207;</div>
+          <div class="article-icon">&#128207;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 07</span>
             <div class="article-header">
@@ -2048,7 +2048,7 @@
         <!-- WEEK 8 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-3" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#fce4ec;">&#129302;</div>
+          <div class="article-icon">&#129302;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 08</span>
             <div class="article-header">
@@ -2083,7 +2083,7 @@
         <!-- WEEK 10 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#e8f4fd;">&#128187;</div>
+          <div class="article-icon">&#128187;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 10</span>
             <div class="article-header">
@@ -2118,7 +2118,7 @@
         <!-- WEEK 11 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-2" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#f3e5f5;">&#9878;</div>
+          <div class="article-icon">&#9878;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 11</span>
             <div class="article-header">
@@ -2153,7 +2153,7 @@
         <!-- WEEK 12 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-3" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#e8f5e9;">&#127963;</div>
+          <div class="article-icon">&#127963;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 12</span>
             <div class="article-header">
@@ -2188,7 +2188,7 @@
         <!-- WEEK 13 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#fff8e1;">&#128279;</div>
+          <div class="article-icon">&#128279;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 13</span>
             <div class="article-header">
@@ -2223,7 +2223,7 @@
         <!-- WEEK 14 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-2" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#fce4ec;">&#128241;</div>
+          <div class="article-icon">&#128241;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 14</span>
             <div class="article-header">
@@ -2258,7 +2258,7 @@
         <!-- WEEK 15 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-3" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#e8f5e9;">&#127979;</div>
+          <div class="article-icon">&#127979;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 15</span>
             <div class="article-header">
@@ -2293,7 +2293,7 @@
         <!-- WEEK 16 -->
         <div class="article-card-wrap">
         <div class="article-card reveal delay-1" onclick="openArticleModal(this)">
-          <div class="article-icon" style="background:#e8f0fe;">&#129504;</div>
+          <div class="article-icon">&#129504;</div>
           <div class="article-card-body">
             <span class="week-pill">Week 16</span>
             <div class="article-header">
@@ -2598,31 +2598,37 @@
     window.addEventListener('load', revealVisible);
 
     // Toggle project cards expand/collapse
-    function toggleProject(card) {
-      var isOpen = card.classList.contains('open');
-      var grid = document.querySelector('.projects-grid');
-      var isMobile = window.innerWidth <= 700;
-      document.querySelectorAll('.project-card.open').forEach(function(c) { c.classList.remove('open'); });
-      document.querySelectorAll('.project-card-wrap.open-proj').forEach(function(w) { w.classList.remove('open-proj'); });
-      if (!isOpen) {
-        var scrollBefore = window.scrollY;
-        card.classList.add('open');
-        var wrap = card.closest('.project-card-wrap');
-        if (!isMobile) {
-          if (wrap) wrap.classList.add('open-proj');
-          if (grid) grid.style.alignItems = 'start';
-        }
-        // Restore scroll position aggressively across 8 frames
-        // to override browser's auto-scroll that fires after layout reflow
-        var count = 0;
-        function lockScroll() {
-          window.scrollTo(0, scrollBefore);
-          count++;
-          if (count < 8) requestAnimationFrame(lockScroll);
-        }
-        requestAnimationFrame(lockScroll);
-      } else {
-        if (!isMobile && grid) grid.style.alignItems = 'stretch';
+    function toggleProject(card) { openProjectModal(card); }
+
+    function openProjectModal(card) {
+      var overlay = document.getElementById('project-modal-overlay');
+      var contentEl = document.getElementById('project-modal-content');
+      var numEl = card.querySelector('.project-number');
+      var h3El = card.querySelector('h3');
+      var tagsEl = card.querySelector('.project-tags');
+      var bodyEl = card.querySelector('.project-body');
+      var topEl = card.querySelector('.project-card-top');
+      var num = numEl ? numEl.textContent.trim() : '';
+      var subLabel = topEl ? topEl.querySelectorAll('div')[1] : null;
+      var subLabelText = (subLabel && !subLabel.classList.contains('project-chevron')) ? subLabel.textContent.trim() : '';
+      var title = h3El ? h3El.textContent.trim() : '';
+      var tags = tagsEl ? tagsEl.outerHTML : '';
+      var body = bodyEl ? bodyEl.innerHTML : '';
+
+      contentEl.innerHTML =
+        '<div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0071e3;margin-bottom:0.5rem;">' + (subLabelText || ('Project ' + num)) + '</div>' +
+        '<h2 style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;letter-spacing:-0.04em;color:#000;line-height:1.15;margin-bottom:1rem;">' + title + '</h2>' +
+        tags +
+        '<div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid #e8e8ed;">' + body + '</div>';
+
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal(e) {
+      if (e === null || e.target === document.getElementById('project-modal-overlay')) {
+        document.getElementById('project-modal-overlay').style.display = 'none';
+        document.body.style.overflow = '';
       }
     }
 
@@ -2751,7 +2757,7 @@
       });
     }
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') { closeArticleModal(null); closeSearch(null); }
+      if (e.key === 'Escape') { closeArticleModal(null); closeSearch(null); closeProjectModal(null); }
     });
 
     // ─── OLD TOGGLE ARTICLE (kept for close buttons) ──────
@@ -3012,7 +3018,13 @@
     nav { padding: 0 0.75rem !important; }
     .nav-logo { font-size: 0.72rem !important; white-space: nowrap !important; }
     .logo-full { display: none !important; }
-    .logo-short { display: inline !important; font-size: 0.88rem !important; font-weight: 700 !important; letter-spacing: 0.02em !important; color: #0071e3 !important; }
+    .logo-short {
+      display: inline-flex !important; align-items: center !important; justify-content: center !important;
+      width: 32px !important; height: 32px !important; border-radius: 8px !important;
+      background: #0071e3 !important; color: #fff !important;
+      font-size: 0.7rem !important; font-weight: 800 !important; letter-spacing: 0.04em !important;
+      line-height: 1 !important; text-decoration: none !important;
+    }
     .nav-actions { gap: 0.55rem !important; }
 
     /* ── SECTIONS ────────────────────────────── */
@@ -3045,8 +3057,7 @@
     /* On mobile, tapping any article card opens the modal */
     .article-expanded { display: none !important; }
     .article-card.open .article-expanded { display: none !important; }
-    .article-icon { height: 60px !important; font-size: 1.8rem !important; border-radius: 18px 18px 0 0 !important; }
-    .article-card-body { padding: 0.75rem 0.85rem 2.75rem !important; }
+        .article-card-body { padding: 0.75rem 0.85rem 2.75rem !important; }
     .article-card h3 { font-size: 0.82rem !important; margin-bottom: 0.2rem !important; }
     .week-pill { font-size: 0.6rem !important; margin-bottom: 0.2rem !important; }
     .preview { font-size: 0.75rem !important; }
