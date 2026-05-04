@@ -126,6 +126,8 @@
       border-radius: 0 2px 2px 0;
     }
 
+
+    /* ── WHY THIS WORK MATTERS ──────────────── */
     /* ── BACK TO TOP ─────────────────────────── */
     #back-to-top {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 998;
@@ -500,8 +502,8 @@
     }
     .article-card {
       background: #ffffff; border-radius: 22px;
-      border: 1.5px solid #e8e8ed; cursor: pointer; overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1.5px solid #e8e8ed;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); cursor: pointer; overflow: hidden;
       transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
       flex: 1; display: flex; flex-direction: column;
       position: relative;
@@ -521,10 +523,10 @@
       min-width: 0;
     }
     .article-card.open:hover { transform: none; }
-    /* Article icon — closed state: top-center emoji in taller colored area */
+    /* Article icon — top-center in colored area */
     .article-icon {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding-top: 1rem;
       font-size: 3rem;
@@ -535,13 +537,12 @@
     .article-card.open .article-icon {
       flex: 1;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
-      padding-top: 1.25rem;
       font-size: 4rem;
       order: 2;
       line-height: 1;
-      min-height: 160px;
+      min-height: 130px;
     }
     .article-card-body { padding: 1.4rem 1.4rem 0.75rem; order: 1; flex-shrink: 0; }
     .article-card.open .week-pill {
@@ -965,7 +966,7 @@
 
     /* Gradient section transitions */
     #about    { background: linear-gradient(180deg, #f5f5f7 0%, #efefef 100%); }
-    #articles { background: linear-gradient(180deg, #ffffff 0%, #f8f9fd 100%); }
+    #articles { background: #f5f5f7; }
     #contact  { background: linear-gradient(180deg, #f0f0f5 0%, #f5f5f7 100%); }
 
     /* Stat counter animation */
@@ -1664,7 +1665,7 @@
               <span class="tag">Case Study</span>
               <span class="tag">Presentation</span>
               <span class="tag">Construction News</span>
-              <span class="tag">In Progress</span>
+              <span class="tag">Spring 2026</span>
             </div>
             <div class="project-body">
               <div class="project-body-grid">
@@ -1702,7 +1703,6 @@
               <span class="tag">Thematic Analysis</span>
               <span class="tag">APA Report</span>
               <span class="tag">CMET 6270</span>
-              <span class="tag">In Progress</span>
             </div>
             <div class="project-body">
               <div class="project-body-grid">
@@ -1779,7 +1779,6 @@
               <span class="tag">Pavement Engineering</span>
               <span class="tag">Sensitivity Analysis</span>
               <span class="tag">Group Project</span>
-              <span class="tag">In Progress</span>
             </div>
             <div class="project-body">
               <div class="project-body-grid">
@@ -1911,7 +1910,7 @@
         <div class="article-card reveal delay-1">
           <div class="article-icon" style="background:#fff3e0;">&#127758;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 02</span>
+            <span class="week-pill">Week 01</span>
             <div class="article-header">
               <h3>Impact of AI on Society</h3>
               <div class="article-chevron"></div>
@@ -1946,7 +1945,7 @@
         <div class="article-card reveal delay-2">
           <div class="article-icon" style="background:#fce4ec;">&#129504;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 03</span>
+            <span class="week-pill">Week 02</span>
             <div class="article-header">
               <h3>Artificial General Intelligence</h3>
               <div class="article-chevron"></div>
@@ -1981,7 +1980,7 @@
         <div class="article-card reveal delay-3">
           <div class="article-icon" style="background:#e8f5e9;">&#128640;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 05</span>
+            <span class="week-pill">Week 03</span>
             <div class="article-header">
               <h3>ASI &mdash; Artificial Super Intelligence</h3>
               <div class="article-chevron"></div>
@@ -2016,7 +2015,7 @@
         <div class="article-card reveal delay-1">
           <div class="article-icon" style="background:#fff8e1;">&#127959;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 06</span>
+            <span class="week-pill">Week 04</span>
             <div class="article-header">
               <h3>AI Apps and Tools for AEC / FM</h3>
               <div class="article-chevron"></div>
@@ -2051,7 +2050,7 @@
         <div class="article-card reveal delay-2">
           <div class="article-icon" style="background:#fce4ec;">&#128207;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 07</span>
+            <span class="week-pill">Week 05</span>
             <div class="article-header">
               <h3>BIM &amp; Engineering Tools</h3>
               <div class="article-chevron"></div>
@@ -2086,7 +2085,7 @@
         <div class="article-card reveal delay-3">
           <div class="article-icon" style="background:#e3f2fd;">&#129302;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 08</span>
+            <span class="week-pill">Week 06</span>
             <div class="article-header">
               <h3>AI Agents</h3>
               <div class="article-chevron"></div>
@@ -2121,7 +2120,7 @@
         <div class="article-card reveal delay-1">
           <div class="article-icon" style="background:#f3e5f5;">&#128187;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 10</span>
+            <span class="week-pill">Week 07</span>
             <div class="article-header">
               <h3>Vibe Coding</h3>
               <div class="article-chevron"></div>
@@ -2156,7 +2155,7 @@
         <div class="article-card reveal delay-2">
           <div class="article-icon" style="background:#e0f7fa;">&#9878;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 11</span>
+            <span class="week-pill">Week 08</span>
             <div class="article-header">
               <h3>Societal AI Impact</h3>
               <div class="article-chevron"></div>
@@ -2191,7 +2190,7 @@
         <div class="article-card reveal delay-3">
           <div class="article-icon" style="background:#e8f5e9;">&#127963;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 12</span>
+            <span class="week-pill">Week 09</span>
             <div class="article-header">
               <h3>Government Policy &amp; Rules</h3>
               <div class="article-chevron"></div>
@@ -2226,7 +2225,7 @@
         <div class="article-card reveal delay-1">
           <div class="article-icon" style="background:#fff3e0;">&#128279;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 13</span>
+            <span class="week-pill">Week 10</span>
             <div class="article-header">
               <h3>Procurement &amp; Supply Chain</h3>
               <div class="article-chevron"></div>
@@ -2261,7 +2260,7 @@
         <div class="article-card reveal delay-2">
           <div class="article-icon" style="background:#e3f2fd;">&#128241;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 14</span>
+            <span class="week-pill">Week 11</span>
             <div class="article-header">
               <h3>Social Media &amp; AI</h3>
               <div class="article-chevron"></div>
@@ -2296,7 +2295,7 @@
         <div class="article-card reveal delay-3">
           <div class="article-icon" style="background:#fce4ec;">&#127979;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 15</span>
+            <span class="week-pill">Week 12</span>
             <div class="article-header">
               <h3>Higher Education</h3>
               <div class="article-chevron"></div>
@@ -2331,7 +2330,7 @@
         <div class="article-card reveal delay-1">
           <div class="article-icon" style="background:#f3e5f5;">&#129504;</div>
           <div class="article-card-body">
-            <span class="week-pill">Week 16</span>
+            <span class="week-pill">Week 13</span>
             <div class="article-header">
               <h3>AI Voices (Sutskever, Hassabis)</h3>
               <div class="article-chevron"></div>
@@ -2424,7 +2423,7 @@
     </div>
   </section>
 
-    <!-- REFLECTION — ✏️ Replace quote and all 4 points with your real thoughts -->
+<!-- REFLECTION — ✏️ Replace quote and all 4 points with your real thoughts -->
   <section id="reflection">
     <div class="inner reveal">
       <p class="section-tag">Semester Reflection</p>
@@ -2501,7 +2500,8 @@
   <!-- FOOTER -->
   <footer>
     © 2026 Harshavardhan Tumma &nbsp;·&nbsp; M.S. in Construction and Facilities Engineering<br/>
-    <span style="color:#3a3a3c;">University of North Carolina at Charlotte, Charlotte, NC</span>
+    <span style="color:#3a3a3c;">University of North Carolina at Charlotte, Charlotte, NC</span><br/>
+    <span style="color:#515154;font-size:0.72rem;">Last updated: May 2026</span>
   </footer>
 
   <!-- JAVASCRIPT -->
@@ -2967,6 +2967,7 @@
   </script>
   <!-- MOBILE SAFETY NET -->
   <style>
+
   /* ── SEARCH MODAL ─────────────────────────────── */
   #search-modal-overlay {
     display: none; position: fixed; inset: 0; z-index: 2000;
@@ -3111,8 +3112,8 @@
     .carousel-nav { display: none !important; }
     .articles-scroll-wrap { overflow-x: auto !important; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%) !important; mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%) !important; }
     .articles-grid { display: flex !important; flex-direction: row !important; width: max-content !important; gap: 0.85rem !important; padding: 0.5rem 0.75rem 1.25rem !important; }
-    .article-card-wrap { flex: 0 0 260px !important; width: 260px !important; border-radius: 18px !important; min-width: 0 !important; transform: none !important; }
-    .article-card-wrap.open-wrap { flex: 0 0 260px !important; min-width: 0 !important; }
+    .article-card-wrap { flex: 0 0 210px !important; width: 210px !important; border-radius: 18px !important; min-width: 0 !important; transform: none !important; }
+    .article-card-wrap.open-wrap { flex: 0 0 210px !important; min-width: 0 !important; }
     .article-card { border-radius: 18px !important; background: #f5f5f7 !important; border: 1px solid transparent !important; border-bottom: 1px solid transparent !important; box-shadow: none !important; }
     .article-card.open { background: #f5f5f7 !important; border-color: #0071e3 !important; box-shadow: 0 4px 16px rgba(0,113,227,0.15) !important; }
     /* On mobile, tapping any article card opens the modal */
