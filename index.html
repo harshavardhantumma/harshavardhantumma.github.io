@@ -2864,7 +2864,18 @@
       var li = document.getElementById('linkedin-chip');
       if (li) { li.href = 'https://www.linkedin.com/in/harshavardhantumma'; }
       var navEmail = document.getElementById('nav-email-btn');
-      if (navEmail) { navEmail.href = 'mailto:' + email; navEmail.onclick = null; }
+      if (navEmail) {
+        navEmail.href = '#';
+        navEmail.onclick = function(e) {
+          e.preventDefault();
+          navigator.clipboard.writeText(email).then(function() {
+            var orig = navEmail.getAttribute('title');
+            navEmail.setAttribute('title', 'Copied!');
+            setTimeout(function() { navEmail.setAttribute('title', orig); }, 2000);
+          });
+          return false;
+        };
+      }
       var navLi = document.getElementById('nav-linkedin-btn');
       if (navLi) { navLi.href = 'https://www.linkedin.com/in/harshavardhantumma'; }
       var navEmail2 = document.getElementById('nav-email');
